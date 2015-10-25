@@ -1,0 +1,136 @@
+\documentclass[a4paper, english, twoside, 12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}    %nice copy and pasting
+\usepackage[T1]{fontenc}       %makes text copy-and-pastable
+%\usepackage{natbib}            %for bibliography stuff
+\usepackage{graphicx}          %for images
+\usepackage{epstopdf} 			%To import unsw emblem and stuff
+%\DeclareGraphicsExtensions{.eps}
+
+\usepackage{wrapfig}           %for figures
+%\usepackage[export]{adjustbox} %for putting boxes around figures
+\usepackage{url}               %allow pretty formating of URLs \url{www.example.com}
+\usepackage{booktabs}          % good tables package
+\usepackage{multirow}          %merging table cells
+\usepackage{varioref}          %for doing "table x on page y" with \vref{tab:label}
+\usepackage{caption}           %to use minipage for inserting figures
+\usepackage{float}             %for H figure and table placements Here.
+\usepackage{pdfpages}          %To include pdfs
+\usepackage[nottoc, notlot, notlof, numbib]{tocbibind} %Number the references section
+\usepackage[title, titletoc, header]{appendix}
+\usepackage{tikz}
+%\usepackage{array}
+%\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\raggedbottom
+
+
+%these 3 lines automatically render opening double quotes the right way around
+%(They normally appear backwards)
+\usepackage [english]{babel}
+\usepackage [autostyle, english = american]{csquotes}
+\MakeOuterQuote{"}
+\usepackage{pgfgantt}          %For gantt charts
+\usepackage{rotating}
+\usepackage{subcaption}
+
+% Add code segments, make them look nice
+\usepackage{listings}
+\lstset{ %
+	language=C,                % choose the language of the code
+	basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,           		% adds a frame around the code
+	tabsize=2,          			% sets default tabsize to 2 spaces
+	captionpos=b,           		% sets the caption-position to bottom
+	breaklines=true,   		        % sets automatic line breaking
+	breakatwhitespace=false,    	% sets if automatic breaks should only happen at whitespace
+	escapeinside={\%*}{*)}          % if you want to add a comment within your code
+}
+\usepackage[colorinlistoftodos]{todonotes}%to do notes
+%\usepackage[disable]{todonotes} %Uncomment for the final version
+
+
+\graphicspath{{./img/}}
+\title{
+	\centering\includegraphics[width=0.8\textwidth]{Arms-vl}\\
+	\vspace{1cm}
+	\Huge \textbf{Ultra-High Fidelity Spin Qubit Initialization with Digital Feedback}\\
+	\vspace{1cm}
+    \huge Interim Thesis A Report
+	}
+
+\author{\Huge \emph{Mark Johnson}\\
+        \Large z3421023 \\\\ 
+        }
+        
+\date{\today} %Date of submission
+
+%\setcounter{tocdepth}{2}% remove subsubsections from table of contents
+   
+%This package must go last, or it won't work
+%With this package, you can click on cross references, URLs and page numbers, and you'll be taken there.
+\usepackage[hidelinks,%clickable cross references and URLs, without visable formatting
+            pdftex,%pdf meta data
+            %pdfauthor={},%pdf meta data
+            pdftitle={Design Proposal},%pdf meta data
+            ]{hyperref}
+\begin{document}
+
+\pagenumbering{roman}
+%\includepdf{plagarismDeclaration.pdf}
+%\includepdf{scoreSheet.pdf}
+\pagenumbering{arabic}
+
+%  Include the cover page
+\thispagestyle{empty}
+\include{./src/cover}
+\pagebreak
+
+
+%\todo{Put a nice graphic here or something}
+\listoftodos
+
+\pagebreak
+
+%Required
+\tableofcontents
+\listoffigures
+\listoftables
+
+\pagebreak
+\todo{everything}
+
+\section{Abstract}
+\input{./src/abstract}
+\section{Introduction}
+\input{./src/introduction}
+\section{Literature Review}
+\input{./src/literature_review}
+\section{Experimental Design}
+\input{./src/experimental_design}
+\section{Prospective Plan}
+\input{./src/prospective_plan}
+\section{Conclusion}
+\input{./src/conclusion}
+
+\bibliographystyle{ieeetr}	%IEEE style referencing
+\bibliography{./src/references}
+
+\begin{appendices} 
+	\section{Risk Assessment}
+	\input{./src/risk_assessment}
+	\section{Supplementary Information}
+	\input{./src/supplementary_info}
+\end{appendices}
+\end{document}
