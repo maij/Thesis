@@ -52,7 +52,15 @@ Figure \ref{coulomb_blockade}, shows the relationship between the potential ener
 \subsection{Devices}
 \subsubsection{PCIe Digitizer Card}
 \todo[inline]{Talking points of the Digitizer solution, DMA, etc. etc.}
-\cite{ATS9440}
+The ATS9440 PCIe digitizer card \cite{ATS9440} has been incorporated into the previous years' research and hence, a lot of the groundwork has been laid out for using the device, and interfacing it with experiments. It is the natural solution, to attempt to provide digital feedback in a MATLAB environment in a semi-real-time capacity. There is a clear benefit in utilizing what is already well established, conditional that it can achieve what is necessary.
+
+\begin{itemize}
+	\item Range of sampling frequencies from 1 KS/s to 125 MS/s
+	\item 4 independent input channels
+	\item Internal (from one of the 4 input channels) and external triggering
+	\item 14-bit resolution, with definable input ranges of $\pm 100 \textrm{mV}$ to $\pm 4 \textrm{V}$
+\end{itemize}
+
 %\subsubsection{FPGA/$\mu$Controller and ADC}
 \todo[inline]{Talking points of the external FPGA and ADC solution, mention some particular examples of ADCs etc.}
 \subsubsection{XMC}
