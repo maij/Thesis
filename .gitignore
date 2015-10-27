@@ -8,3 +8,7 @@
 *.pdf
 *.synctex.gz
 *.toc
+main.glo
+main.acn
+main.glsdefs
+main.ist

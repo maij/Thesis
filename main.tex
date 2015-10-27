@@ -6,9 +6,13 @@
 %\usepackage{natbib}            %for bibliography stuff
 \usepackage{graphicx}          %for images
 \usepackage{epstopdf} 			%To import unsw emblem and stuff
+\usepackage[acronym]{glossaries}
+\newacronym{set}{SET}{Single Electron Transistor}
+
+\makeglossaries
+
 %\DeclareGraphicsExtensions{.eps}
 
-\usepackage{epigraph}
 \usepackage{wrapfig}           %for figures
 %\usepackage[export]{adjustbox} %for putting boxes around figures
 \usepackage{url}               %allow pretty formating of URLs \url{www.example.com}
@@ -133,9 +137,12 @@
 \bibliography{./src/references}
 
 \begin{appendices} 
+	\section{Glossary}
+	\printglossaries
 	\section{Risk Assessment}
 	\input{./src/risk_assessment}
 	\section{Supplementary Information}
 	\input{./src/supplementary_info}
+	
 \end{appendices}
 \end{document}
