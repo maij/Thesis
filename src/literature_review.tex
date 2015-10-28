@@ -3,14 +3,17 @@
 \todo[inline]{Talk quantum electron spin, projective measurement vs non-projective measurement (bloch sphere), about technology behind SETs}
 \subsubsection{Quantum Information}
 \todo[inline]{Fix this, too much detail on spin}
-A quantum computer is composed of quantum bits of information, known as qubits. In the devices manufactured by CQC2T a qubit is created from the physical property of an electron known as spin. Spin is the intrinsic magnetic moment of nano structures, essentially a small magnetic dipole, that can point in any direction in free space. For an electron, you can measure the value of this magnetic moment to be $S = \frac{\hbar}{2}$ (denoted "spin one half"). Despite this freedom of orientation, if you were to measure this spin in an arbitrary orientation, you will always find the spin to be aligned or anti-aligned to the axis of measurement (with some exceptions). For example, if you were to measure in the z-axis you would find the following:
+\todo[inline]{Talk about state space of qubits vs classical bits}
+A quantum computer is composed of quantum bits of information, known as qubits. The difference between a classical bit and a quantum bit is the concept of quantum entanglement. Where any classical bit can be read and written independently of other bits in the system, the same cannot always be said of quantum bits. Reading or writing to a qubit can cause other entangled qubits in the system to change, as a single qubit no longer has a defined binary state, but it can be in a superposition of a logical "1" or "0" state. This superposition increases the information density of a quantum system, and to represent a fully entangled n-qubit system in a classical computer requires $2^n$ bits. \cite{bennett2000quantum}
+
+In the devices manufactured by \gls{cqc2t} qubit is created from the physical property of an electron known as spin. Spin is the intrinsic magnetic moment of nano structures, essentially a small magnetic dipole, that can point in any direction in free space. For an electron, you can measure the value of this magnetic moment to be $S = \frac{\hbar}{2}$ (denoted "spin one half"). Despite this freedom of orientation, if you were to measure this spin in an arbitrary orientation, you will always find the spin to be aligned or anti-aligned to the axis of measurement (with some exceptions). For example, if you were to measure in the z-axis you would find the following:
 $$S_x = 0; S_y = 0; S_z = \pm\frac{\hbar}{2}$$
 
 Where the sign indicates alignment or anti-alignment.
 However, if you were to then measure shortly after on the x-axis you would find that the spin has become indistinguishable.
 
 that can only be observed in one of two possible states at a time. These states are named "spin-up" or "spin-down", which corresponds to the north pole pointing up or down, respectively, with regards to the axis of measurement (typically the vertical z-axis). 
-
+\label{zeeman}
 If you apply an external magnetic field to these spins, you introduce an energy difference between the spin-up and spin-down states, known as the Zeeman splitting. Using this energy difference, we can perform a spin-dependent readout from a special device, introduced in the next section.
 %\subsubsection{}
 \todo[inline]{Talk about the electron spin here}
@@ -25,7 +28,7 @@ Figure \ref{coulomb_blockade}, shows the relationship between the potential ener
 \begin{figure}[htbp!]
 	\centering
 	\includegraphics[width=0.6\textwidth]{set_circuit}
-	\caption{Equivalent electrical circuit of an SET}
+	\caption{Equivalent electrical circuit of an \gls{set}}
 	\label{fig::set_circuit}
 \end{figure}
 
@@ -44,24 +47,25 @@ Figure \ref{coulomb_blockade}, shows the relationship between the potential ener
 \end{figure}
 
 
+\todo[inline]{Talk about spin dependent tunnelling}
 
-\cite{nuclear_spin_readout}
+Recalling the Zeeman splitting energy (Section \ref{zeeman}) that is created through the application of an external magnetic field, if we can then shift the average energy level, we can allow the higher energy state to be transmitted through the coulomb blockade, while the lower energy state will not be transmitted, due to the coulomb blockade. This is known as spin-dependent tunneling, and in silicon, the higher energy state is spin up.
+
+\begin{figure}[htbp!]
+	\centering
+	\includegraphics[width=\textwidth]{set_loading}
+	\caption{The initialisation procedure of an \gls{set}}
+	\label{fig::set_loading}
+\end{figure}
+
+\begin{figure}[htbp!]
+	\centering
+	\includegraphics[height=0.5\textheight]{readout_errors}
+	\caption{Load and read errors that occur when the \gls{set} is in the readout position}
+	\label{fig::errors}
+\end{figure}
 
 
-\cite{bonato2015optimized}
-\subsection{Devices}
-\subsubsection{PCIe Digitizer Card}
-\todo[inline]{Talking points of the Digitizer solution, DMA, etc. etc.}
-The ATS9440 PCIe digitizer card \cite{ATS9440} has been incorporated into the previous years' research and hence, a lot of the groundwork has been laid out for using the device, and interfacing it with experiments. It is the natural solution, to attempt to provide digital feedback in a MATLAB environment in a semi-real-time capacity. There is a clear benefit in utilizing what is already well established, conditional that it can achieve what is necessary.
-
-\begin{itemize}
-	\item Range of sampling frequencies from 1 KS/s to 125 MS/s
-	\item 4 independent input channels
-	\item Internal (from one of the 4 input channels) and external triggering
-	\item 14-bit resolution, with definable input ranges of $\pm 100 \textrm{mV}$ to $\pm 4 \textrm{V}$
-\end{itemize}
-
-%\subsubsection{FPGA/$\mu$Controller and ADC}
-\todo[inline]{Talking points of the external FPGA and ADC solution, mention some particular examples of ADCs etc.}
-\subsubsection{XMC}
-\todo[inline]{Talking points of the integrated XMC solution, pre-built FPGA, ADCs and possibly with Auto-DMA}
+\todo[inline]{Talk about the place of digital feedback in quantum systems}
+\todo[inline]{find more digital feedback stuff}
+Digital feedback has recently been explored in the development of a quantum computer. For example, it has been used to reduce error in resonance estimation \cite{bonato2015optimized} and increase coherence time of a single qubit through adjusting control parameters \cite{shulman2014suppressing}.
