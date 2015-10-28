@@ -1,14 +1,18 @@
-With new devices constantly being designed and fabricated, new avenues being probed, the structure of experiments can become convoluted. The needless post-processing of all acquired data to top it all off is \todo[inline]{gargghh}
+Though experiments and designs are constantly evolving, at the core of this group's research is an \gls{set} used to perform electron spin readout. The apparatus I am applying my work to is by no means comprehensive, but it serves as a reference point in a proven device \cite{morello2010single}. To improve spin initialisation with this particular device would therefore be extensible to other devices and experiments.
 
 
-The apparatus I am applying my work to is by no means comprehensive, but it serves as a reference point in a proven device. To accomplish this body of work with this particular device would 
+Figure \ref{fig::set_layout} shows the physical device that will be similar to one I will be testing my solution on. This devices has various voltage-controlled nodes, such as the top gate to induce a layer of electrons on the boundary, the left and right barriers to remove this layer, forming tunnel junctions to the island, and finally the plunger which can act at the gate as defined in section \ref{sec::set}.
 
+\begin{figure}[htbp!]
+	\centering
+	\includegraphics[width=\textwidth]{set_layout}
+	\caption{The layout of an SET}
+	\label{fig::set_layout}
+\end{figure}
 
-Figure \ref{fig::set_layout} \cite{morello2010single}
-shows the physical device that will be similar to one I will be testing my solution on. This devices has various control points, such as the top gate to induce a layer of electrons on the boundary, the left and right barriers to remove this layer, forming tunnel junctions to the island, and finally the plunger to control the gate, as in a MOSFET.
 \subsection{Problem Statement}
-\todo[inline]{Say something5}
-
+\todo[inline]{Say something}
+The problem with this current approach is the cost of running these experiments, only to throw away data, if at the point of the plunge, there was no electron on the donor.
 \begin{figure}[htbp!]
 	\centering
 	\includegraphics[width=\textwidth]{thesis_experiment.pdf}
@@ -30,6 +34,15 @@ The primary features of this solution are:
 	\item Auto-\gls{dma} for fast storage and parallel data processing.
 \end{itemize}
 
+To verify MATLAB as a viable solution, it was first used against a full set of data that had been collected from a previous experiment. I performed a set of 3 tests, the first was to simply process the entire data in a single operation. This was the least like a real-world test, but served as a proof of concept that the peak detection, and time-out period were working. Once this was established, I moved onto performing this task on subsets, or windows, of the full data set. This is closer to a real test, and is actually extensible to the next alternative solution, as data processing on an embedded system can be limited by available memory. The test itself performed as expected, mirroring the first test. The final test was perhaps the most like a real-world solution, where I filled a circular buffer of a fixed size (512 samples) which mimics a streaming input. This allows for a near-real-time time-out detection, supposing that the time it takes to process the signal is less than the time it takes to fill a time slice of the buffer (arbitrary, 32 samples in this example). Figure \ref{fig::timeout_detection} depicts the windowed solution over a large data set.
+
+\begin{figure}[htbp!]
+	\centering
+	\includegraphics[width=\textwidth]{timeout_detection}
+	\caption{MATLAB performing peak detection on windows of the green data set. The blue dashed line represents the output signal, once a set amount of time has passed}
+	\label{fig::timeout_detection}
+\end{figure}
+
 \subsubsection{FPGA/$\mu$Controller and ADC}
 \todo[inline]{Talking points of the external FPGA and ADC solution, mention some particular examples of ADCs etc.}
 An alternative solution is to have an external device which is responsible for detecting peaks in the \gls{set} current, and waiting a predetermined amount of time before setting a TTL output to high, which could then trigger the plunge, and the experiment to begin.
@@ -37,10 +50,3 @@ An alternative solution is to have an external device which is responsible for d
 This approach requires the design of a high precision \gls{adc}, with a sampling rate of at least 1 MS/s. The digital data would then need to be processed by either a $\mu$Controller or a \gls{fpga}. The primary benefit of this solution is that it is versatile, and can be adapted and modified to meet different needs of the future. Furthermore, as this is completely external to the rest of the experiment, it can truly run in parallel, and accurate timing without error could prove to be more achievable.
 \subsubsection{XMC}
 \todo[inline]{Talking points of the integrated XMC solution, pre-built FPGA, ADCs and possibly with Auto-DMA}
-
-\begin{figure}[htbp!]
-	\centering
-	\includegraphics[width=\textwidth]{set_layout}
-	\caption{The layout of an SET}
-	\label{fig::set_layout}
-\end{figure}
