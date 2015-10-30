@@ -6,7 +6,7 @@
 %\usepackage{natbib}            %for bibliography stuff
 \usepackage{graphicx}          %for images
 \usepackage{epstopdf} 			%To import unsw emblem and stuff
-\usepackage[acronym]{glossaries}
+\usepackage[acronym, nomain]{glossaries}
 
 \makeglossaries
 \include{./src/glossary}
@@ -41,8 +41,8 @@
 \usepackage{rotating}
 \usepackage{subcaption}
 
-\usepackage[colorinlistoftodos]{todonotes}%to do notes
-%\usepackage[disable]{todonotes} %Uncomment for the final version
+%\usepackage[colorinlistoftodos]{todonotes}%to do notes
+\usepackage[disable]{todonotes} %Uncomment for the final version
 
 
 \graphicspath{{./img/}}
@@ -59,7 +59,7 @@
 \begin{document}
 
 \pagenumbering{roman}
-\includepdf{./src/cover_sheet.pdf}
+%\includepdf{./src/cover_sheet.pdf}
 \pagenumbering{arabic}
 
 %  Include the cover page
@@ -100,11 +100,12 @@
 \pagebreak
 \bibliographystyle{ieeetr}	%IEEE style referencing
 \bibliography{./src/references}
-
+\pagebreak
 \begin{appendices} 
 	\section{Glossary}
 	\printglossaries
 	\section{Risk Assessment}
+	Attached below.
 	\includepdf[landscape=true,pages={1-3}]{./src/risk_management.pdf}	
 	\section{Supplementary Information}
 	\input{./src/supplementary_info}

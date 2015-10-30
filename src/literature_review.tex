@@ -1,28 +1,26 @@
 \subsection{State of the Art}
 % Review all of the current experimental evidence pertaining to my area of research
-\todo[inline]{Talk quantum electron spin, projective measurement vs non-projective measurement (bloch sphere), about technology behind SETs}
+%\todo[inline]{Talk quantum electron spin, projective measurement vs non-projective measurement (bloch sphere), about technology behind SETs}
 \subsubsection{Quantum Information}
-\todo[inline]{Fix this, too much detail on spin}
-\todo[inline]{Talk about state space of qubits vs classical bits}
+%\todo[inline]{Fix this, too much detail on spin}
+%\todo[inline]{Talk about state space of qubits vs classical bits}
 A quantum computer is composed of quantum bits of information, known as qubits. The difference between a classical bit and a quantum bit is the concept of quantum entanglement. Where any classical bit can be read and written independently of other bits in the system, the same cannot always be said of quantum bits. Reading or writing to a qubit can cause other entangled qubits in the system to change, as a single qubit no longer has a defined binary state, but it can be in a superposition of a logical "1" or "0" state. This superposition increases the information density of a quantum system, and to represent a fully entangled n-qubit system in a classical computer requires $2^n$ bits. \cite{bennett2000quantum}
 
-In the devices manufactured by \gls{cqc2t} qubit is created from the physical property of an electron known as spin. Spin is the intrinsic magnetic moment of nano structures, essentially a small magnetic dipole, that can point in any direction in free space. For an electron, you can measure the value of this magnetic moment to be $S = \frac{\hbar}{2}$ (denoted "spin one half"). Despite this freedom of orientation, if you were to measure this spin in an arbitrary orientation, you will always find the spin to be aligned or anti-aligned to the axis of measurement (with some exceptions). For example, if you were to measure in the z-axis you would find the following:
+In the devices manufactured by \gls{cqc2t}, a qubit is created from the physical property of an electron known as spin. Spin is the intrinsic magnetic moment of nano structures, essentially a small magnetic dipole, that can point in any direction in free space. For an electron, you can measure the value of this magnetic moment to be $S = \frac{\hbar}{2}$ (denoted "spin one half"). Despite this freedom of orientation, if you were to measure this spin in an arbitrary orientation, you will always find the spin to be aligned or anti-aligned to the axis of measurement (with some exceptions). For example, if you were to measure in the z-axis you would find the following:
 $$S_x = 0; S_y = 0; S_z = \pm\frac{\hbar}{2}$$
 
-Where the sign indicates alignment or anti-alignment.
-However, if you were to then measure shortly after on the x-axis you would find that the spin has become indistinguishable.
-
-that can only be observed in one of two possible states at a time. These states are named "spin-up" or "spin-down", which corresponds to the north pole pointing up or down, respectively, with regards to the axis of measurement (typically the vertical z-axis). 
+where the sign indicates alignment or anti-alignment.
+This means that spin qubits can only be observed in one of two possible states at a time. These states are named "spin-up" or "spin-down", which corresponds to the north pole pointing up or down, respectively, with regards to the axis of measurement (typically the vertical z-axis). A single readout is not enough to determine the complete state of a qubit, and an average must be taken over many samples to determine the true state. \\
 \label{zeeman}
-If you apply an external magnetic field to these spins, you introduce an energy difference between the spin-up and spin-down states, known as the Zeeman splitting. Using this energy difference, we can perform a spin-dependent readout from a special device, introduced in the next section.
+If you apply an external magnetic field to these spins, you introduce an energy difference between the spin-up and spin-down states, known as the Zeeman splitting. Using this energy difference, we can perform a spin-dependent readout from a special device, introduced in the next section. It's important to note that this energy difference is much smaller than the thermal energy of a typical room, so all experiments are performed at cryogenic temperatures, ranging from 4K to less than 100 mK. \cite{morello2010single}
 %\subsubsection{}
-\todo[inline]{Talk about the electron spin here}
+%\todo[inline]{Talk about the electron spin here}
 \subsubsection{Quantum Devices}
-\todo[inline]{Talk about the SET here}
+%\todo[inline]{Talk about the SET here}
 \label{sec::set}
 A quantum device is any device that operates on the principles of quantum mechanics. An example is a \gls{set}, where the simplest variety can be described using the equivalent electrical circuit \cite{devoret2000amplifying} shown in Figure \ref{fig::set_circuit}. The components between the source and drain are called tunnel junctions, which can allow electrons to travel through them, even if the energy of the barrier is higher than the energy of the electron. Due to the arrangement of these components, an island is formed between each node of the typical FET transistor, which is coupled to the gate capacitively and to the drain and source through the tunnel junctions, but it is otherwise electrically isolated from the rest of the system.
 
-Due to the isolation of the island, the only way for it to gain or lose a charge is through the drain or source. However, due to the capacitive coupling to the gate through $C_G$, energy is required to increase the charge of the island (assuming $V_G$ is constant), and as the energy of the island is given by $$E_C = \frac{Q^2}{2 C_\Sigma} ; C_\Sigma = C_D + C_S + C_G$$, we can define a quantity known as the charging energy of the capacitor. Adding or removing a single electron from the island would require an energy $\Delta E = \frac{e^2}{2 C}$ which can be on the order of 1 meV. This energy describes the difference in potential created by moving an electron from infinitely far away to on the island, though much smaller charge differences are realisable, and a charge-continuum is formed when the dielectric charge is accounted for.
+Due to the isolation of the island, the only way for it to gain or lose a charge is through the drain or source. However, due to the capacitive coupling to the gate through $C_G$, energy is required to increase the charge of the island (assuming $V_G$ is constant), and as the energy of the island is given by $$E_C = \frac{Q^2}{2 C_\Sigma} ; C_\Sigma = C_D + C_S + C_G$$ we can define a quantity known as the charging energy of the capacitor. Adding or removing a single electron from the island would require an energy $\Delta E = \frac{e^2}{2 C}$ which can be on the order of 1 meV. This energy describes the difference in potential created by moving an electron from infinitely far away to on the island, though much smaller charge differences are realisable, and a charge-continuum is formed when the dielectric charge is accounted for.
 
 Figure \ref{fig::coulomb_blockade}, shows the relationship between the potential energy of the island and conductance through the drain-source. The upper diagram shows all lower energy states are filled, and thus no electron can pass from the source to the island. If we then raise the island potential up, akin to lowering the gate voltage (we assume at this point that the gate capacitor does not discharge), we have created an allowable energy level that can be filled from the source, and can then later tunnel to the drain. While the electron is on the island, there are no further available energy states and thus, we have created a transistor which will only allow a single electron to pass from source to drain at a time.
 
@@ -48,9 +46,11 @@ Figure \ref{fig::coulomb_blockade}, shows the relationship between the potential
 \end{figure}
 
 
-\todo[inline]{Talk about spin dependent tunnelling}
+%\todo[inline]{Talk about spin dependent tunnelling}
 
-Recalling the Zeeman splitting energy (Section \ref{zeeman}) that is created through the application of an external magnetic field, if we can then shift the average energy level, we can allow the higher energy state to be transmitted through the coulomb blockade, while the lower energy state will not be transmitted, due to the coulomb blockade. This is known as spin-dependent tunneling, and in silicon, the higher energy state is spin up.
+Recalling the Zeeman splitting energy (Section \ref{zeeman}) that is created through the application of an external magnetic field, if we can then shift the average energy level of an electron, we can allow the higher energy state to be transmitted through the coulomb blockade, while the lower energy state will not be transmitted, due to the coulomb blockade. This is known as spin-dependent tunneling, and in silicon, the higher energy state is spin up. This is depicted in Figure \ref{fig::set_loading}, where diagram b shows the Fermi level in green, and the red and blue lines are the energy levels of a spin-up and spin-down electron, respectively. 
+
+Furthermore, what we see when the coulomb blockade is lifted is a defined current through the \gls{set} from drain to source. This current is due to the sudden polarization of the phosphorus donor in silicon, as an electron tunnels off of the donor, into a reservoir. This positive voltage can shift the island voltage to allow for a larger \gls{set} current to flow, referring to Figure \ref{fig::coulomb_peaks} which shows the SET current as a function of gate charge, until an electron rejoins the phosphorus donor. This larger current is used to indicate the electron spin state, as ideally only a spin-up electron will tunnel off of the donor.
 
 \begin{figure}[htbp!]
 	\centering
@@ -109,6 +109,6 @@ Figures \ref{fig::spin_steering} and \ref{fig::spin_steering_log} show the expon
 \end{figure}
 \subsubsection{Digital Feedback in Quantum Devices}
 
-\todo[inline]{Talk about the place of digital feedback in quantum systems}
-\todo[inline]{find more digital feedback stuff}
-Digital feedback has recently been explored in the development of a quantum computer. For example, it has been used to reduce error in resonance estimation \cite{bonato2015optimized} and increase coherence time of a single qubit through adjusting control parameters \cite{shulman2014suppressing}.
+%\todo[inline]{Talk about the place of digital feedback in quantum systems}
+%\todo[inline]{find more digital feedback stuff}
+Digital feedback has recently been explored in the development of a quantum computer. For example, it has been used to reduce error in resonance estimation \cite{bonato2015optimized} and increase coherence time of a single qubit through adjusting control parameters \cite{shulman2014suppressing}. As such, it is likely to be a key factor in the future of quantum computers, especially once they are realised as black-box systems.
