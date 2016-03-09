@@ -72,10 +72,13 @@ When the island is at the readout position, ideally a spin up electron would be 
 \end{figure}
 
 
-Once the island has been shifted to the readout position, an electron does not simply tunnel off immediately. There is an average tunnel time associated with the characteristics of the tunnel junction, namely the tunnel resistance and the junction capacitance. The probability of an electron tunnelling through a tunnel junction exponentially decays over time, meaning it is more likely for an electron to leave sooner, rather than later. 
-Suppose the average tunnel time $(\tau)$ of an electron is 1 ms, and suppose we had an unknown spin loaded onto the donor, and we observed the state for a time much shorter than $\tau$, say 1 $\mu$s. If no tunnel event occurred, is this indicative that the electron was truly spin down? In actuality, we cannot be sure unless we were to wait for an infinite amount of time, but by waiting for a length of time T, we gradually gain more information about the system. If a tunnel event occurs, we know for that instance the electron was spin up, however if no tunnel event occurs, depending on the duration of T, we can be increasingly sure that it is spin down. This process is known as weak measurement, as we gradually gain more information about the system. Figure \ref{fig::spin_readout_decay} expresses this concept pictorially, after an arbitrary electron joins the donor, the current readout drops, though the probability of the electron being spin up is still 50\% due to the load error shown in figure \ref{fig::errors}, over time this decays to 0\%. 
+Once the island has been shifted to the readout position, an electron does not simply tunnel off immediately. There is an average tunnel time associated with the characteristics of the tunnel junction, namely the tunnel resistance and the junction capacitance. The probability of an electron tunnelling through a tunnel junction exponentially decays over time, meaning it is more likely for an electron to leave sooner, rather than later. \\
 
-With this information, there are 3 possibilities in initializing a spin-qubit, which are shown in Figure \ref{fig::init_possibilities}. The bottom plot shows the worst case scenario, where the donor was plunged with no electron. This would result in a completely randomised spin, yielding unusable results. The middle plot shows an adequate amount of time between the plunge time and the last current blip, the most realistic case for improving spin initialization.
+\todo{Fix this!!}
+Suppose the average tunnel time $(\tau)$ of an electron is 1 ms, and suppose we had an unknown spin loaded onto the donor, and we observed the state for a time much shorter than $\tau$, say 1 $\mu$s. If no tunnel event occurred, is this indicative that the electron was truly spin down? \\
+In actuality, we cannot be sure unless we were to wait for an infinite amount of time, but by waiting for a length of time T, we gradually gain more information about the system. If a tunnel event occurs, we know for that instance the electron was spin up. However, if no tunnel event occurs for a time T; the likelihood that the electron is spin down increases with T. This process is known as weak measurement, as we gradually gain more information about the system. Figure \ref{fig::spin_readout_decay} expresses this concept pictorially, after an arbitrarily spin-aligned electron joins the donor, the current readout drops, though the probability of the electron being spin up is still 50\% due to the load error shown in figure \ref{fig::errors}, over time this decays to 0\%. 
+
+With this information, there are 3 possibilities in initializing a spin-qubit, which are shown in Figure \ref{fig::init_possibilities}. The first plot shows the trivial case of no tunnel event occurring for a long time, indicating the loaded spin is spin-down. The middle plot shows an adequate amount of time between the plunge time and the last current blip, which presents the case for improving spin initialization. The bottom plot shows the worst case scenario, where the donor was plunged with no electron. This would result in a completely randomised spin, yielding unusable results. 
 
 \begin{figure}[htbp!]
 	\centering
@@ -91,7 +94,7 @@ With this information, there are 3 possibilities in initializing a spin-qubit, w
 	\label{fig::init_possibilities}
 \end{figure}
 
-Figures \ref{fig::spin_steering} and \ref{fig::spin_steering_log} show the exponential decay function. Using this function, we can determine an adequate amount of time to wait to achieve a 99.9\% initialization fidelity will be $7 \tau$. For reference, $5 \tau$ and $3 \tau$ will yield an initialization fidelity of 99.7\% and 97.5\% respectively.
+Figures \ref{fig::spin_steering} and \ref{fig::spin_steering_log} show the exponential decay function. Using this function, we can determine an adequate amount of time to wait to achieve a 99.9\% initialization fidelity is $7 \tau$. For reference, $5 \tau$ and $3 \tau$ will yield an initialization fidelity of 99.7\% and 97.5\% respectively.
 
 \begin{figure}[htbp!]
 	\centering
