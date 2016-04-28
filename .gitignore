@@ -5,9 +5,9 @@
 *.lof
 *.lot
 *.out
-*.pdf
 *.synctex.gz
 *.toc
+main.pdf
 main.glo
 main.acn
 main.glsdefs
