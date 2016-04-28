@@ -2,6 +2,7 @@
 % Review all of the current experimental evidence pertaining to my area of research
 %\todo[inline]{Talk quantum electron spin, projective measurement vs non-projective measurement (bloch sphere), about technology behind SETs}
 \subsubsection{Quantum Information}
+\todo[inline]{Make this less terrible.}
 A quantum computer is composed of quantum bits of information, known as qubits. The difference between a classical bit and a quantum bit is the concept of quantum entanglement. Where any classical bit can be read and written independently of other bits in the system, the same cannot always be said of quantum bits. Reading or writing to a qubit can cause other entangled qubits in the system to change, as a single qubit no longer has a defined binary state, but it can be in a superposition of a logical "1" or "0" state. This superposition increases the information density of a quantum system, and to represent a fully entangled n-qubit system in a classical computer requires $2^n$ bits. \cite{bennett2000quantum}
 
 In the devices manufactured by \gls{cqc2t}, a qubit is created from the physical property of an electron known as spin. Spin is the intrinsic magnetic moment of nano structures, essentially a small magnetic dipole, that can point in any direction in free space. For an electron, you can measure the value of this magnetic moment to be $S = \frac{\hbar}{2}$ (denoted "spin one half"). Despite this freedom of orientation, if you were to measure this spin in an arbitrary orientation, you will always find the spin to be aligned or anti-aligned to the axis of measurement (with some exceptions). For example, if you were to measure in the z-axis you would find the following:
@@ -54,8 +55,12 @@ Furthermore, what we see when the coulomb blockade is lifted is a defined curren
 	\label{fig::set_loading}
 \end{figure}
 
-\subsubsection{Electron Spin Initialization}
+\subsubsection{Electron Spin initialisation}
 \todo[inline]{Cite Rachpon's thesis, discuss here}
+Previous research \cite{rachpon_thesis} has quantified an improvement in qubit control when initialisation fidelities are increased.
+
+\todo[inline]{Introduce Rachpon's thesis, its contributions, and the breadth of knowledge known so far}
+\todo[inline]{Engage in the initialisation section, and discuss the effects of improving this fidelity on the rest of the experiment, in particular, take note of the ability to also perform the nuclear spin readout as a method of minimizing readout error. Combining these two things together, as well as gate fidelities, we have an overall high fidelity system.	I may want to describe/quantify the overall system fidelity, as a product (?) of the other fidelities.}
 
 \subsubsection{Electronic Spin Steering}
 
@@ -71,7 +76,7 @@ When the plunger is at the readout position, ideally a spin up electron would be
 
 Once the island has been shifted to the readout position, an electron does not simply tunnel off immediately. There is an average tunnel time associated with the characteristics of the tunnel junction, namely the tunnel resistance and the junction capacitance. The probability of an electron tunnelling through a tunnel junction exponentially decays over time, meaning it is more likely for an electron to leave sooner, rather than later. \\
 
-\todo{Fix this!!}
+\todo[inline]{Fix this!!}
 Suppose the average tunnel time $(\tau)$ of an electron is 1 ms, and suppose we had an unknown spin loaded onto the donor, and we observed the state for a time much shorter than $\tau$, say 1 $\mu$s. If no tunnel event occurred, is this indicative that the electron was truly spin down? \\
 In actuality, we cannot be sure unless we were to wait for an infinite amount of time, but by waiting for a length of time T, we gradually gain more information about the system. If a tunnel event occurs, we know for that instance the electron was spin up. However, if no tunnel event occurs for a time T; the likelihood that the electron is spin down increases with T. This process is known as weak measurement, as we gradually gain more information about the system. Figure \ref{fig::spin_readout_decay} expresses this concept pictorially, after an arbitrarily spin-aligned electron joins the donor, the current readout drops, though the probability of the electron being spin up is still 50\% due to the load error shown in figure \ref{fig::errors}, over time this decays to 0\%. 
 
@@ -91,7 +96,7 @@ With this information, there are 3 possibilities in initializing a spin-qubit, w
 	\label{fig::init_possibilities}
 \end{figure}
 
-Figures \ref{fig::spin_steering} and \ref{fig::spin_steering_log} show the exponential decay function. Using this function, we can determine an adequate amount of time to wait to achieve a 99.9\% initialization fidelity is $7 \tau$. For reference, $5 \tau$ and $3 \tau$ will yield an initialization fidelity of 99.7\% and 97.5\% respectively.
+Figures \ref{fig::spin_steering} and \ref{fig::spin_steering_log} show the exponential decay function. Using this function, we can determine an adequate amount of time to wait to achieve a 99.9\% initialisation fidelity is $7 \tau$. For reference, $5 \tau$ and $3 \tau$ will yield an initialisation fidelity of 99.7\% and 97.5\% respectively.
 
 \begin{figure}[htbp!]
 	\centering
