@@ -51,7 +51,7 @@
 	
 	%\todo[inline]{Talk about spin dependent tunnelling}
 	
-	Recalling the Zeeman splitting energy (Section \ref{zeeman}) that is created through the application of an external magnetic field, if we can then shift the average energy level of an electron, we can allow the higher energy state to be transmitted through the coulomb blockade, while the lower energy state will not be transmitted, due to the coulomb blockade \todo[inline]{This is misleading, coulomb blockade is due to the presence/absence of an electron on the gate in our setup.}. This is known as spin-dependent tunneling, and in silicon, the higher energy state is spin up. This is depicted in Figure \ref{fig::set_loading}, where diagram b shows the Fermi level in green, and the red and blue lines are the energy levels of a spin-up and spin-down electron, respectively. 
+	Recalling the Zeeman splitting energy (Section \ref{zeeman}) that is created through the application of an external magnetic field, if we can then shift the average energy level of an electron, we can allow the higher energy state to be transmitted through the coulomb blockade, while the lower energy state will not be transmitted \todo[inline]{This is misleading, coulomb blockade is due to the presence/absence of an electron on the gate in our setup.}. This is known as spin-dependent tunneling, and in silicon, the higher energy state is spin up. This is depicted in Figure \ref{fig::set_loading}, where diagram b shows the Fermi level in green, and the red and blue lines are the energy levels of a spin-up and spin-down electron, respectively. 
 	
 	Furthermore, what we see when the coulomb blockade is lifted is a defined current through the \gls{set} from drain to source. This current is due to the sudden polarization of the phosphorus donor in silicon, as an electron tunnels off of the donor, into a reservoir. This positive voltage can shift the island voltage to allow for a larger \gls{set} current to flow, referring to Figure \ref{fig::coulomb_peaks} which shows the SET current as a function of gate charge, until an electron rejoins the phosphorus donor. This larger current is used to indicate the electron spin state, as ideally only a spin-up electron will tunnel off of the donor.
 	
@@ -64,10 +64,10 @@
 	
 \subsection{Quantum Control}
 	\subsubsection{Hyperfine Interaction}
-		In this thesis, we are considering a single $^{31}$P donor implanted near the \gls{set} island. This donor has a single unbound electron which we can perform spin operations on which will be explored in the next section. The phosphorus donor nucleus is also a spin-half particle, and due to its proximity with the donor electron, there is a magnetic interaction which acts as an extra magnetic source which splits the energy levels.
+		In this thesis, we are considering a single $^{31}$P donor implanted near the \gls{set} island. This donor has a single unbound electron on which we can perform spin operations, this will be explored in the next section. The phosphorus donor nucleus is also a spin-half particle, and due to its proximity with the donor electron, there is a magnetic interaction which acts as an extra magnetic source which splits the energy levels.
 		\todo[inline]{Put a diagram here explaining the energy splitting}
 		
-		By modulating the gate voltages, we shift the electrostatic environment about the donor, and hence we change the coupling between the donor nucleus and electron. This in turn modifies the hyperfine interaction, and therefore changes the energy splitting.
+		By modulating the gate voltages, we shift the electrostatic environment about the donor, and hence we change the coupling between the donor nucleus and electron. This in turn modifies the hyperfine interaction, and therefore changes the energy splitting. This change in coupling can be thought of as due to the distance between the electron and nucleus.
 		\todo[inline]{Improve this, talk about resonance shift}
 		
 		By tuning our gate voltages and keeping them steady, we can search for the resonance frequency for both our nucleus and electron. 
@@ -75,7 +75,9 @@
 	\todo[inline]{Discuss NMR/ESR and the state evolution}
 		We can translate an energy difference into a frequency of an electromagnetic wave using $E = h f$, which means we can affect a state transition by applying a microwave or radio frequency pulse.
 		
-		By mapping the electron spin state to the nucleus we can increase the coherence time of our measurements... etc.
+		By mapping the electron spin state to the nucleus we can increase the coherence time of our measurements, as the nucleus is more immune to perturbations in the environment than an electron. Consider Figure \todo[inline]{insert figure showing 4 energy states here}
+		
+		We can map an electron state to the nucleus by first initialising the electron to a known state, in our case spin down, then performing the desired operations, followed by a mapping operation, such as a CNOT or SWAP gate.
 		\todo[inline]{Explain more about mapping}
 		
 	
