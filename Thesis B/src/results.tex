@@ -7,7 +7,8 @@
 	\begin{figure}[htbp!]
 		\centering
 		\includegraphics[width=0.8\textwidth]{WaitTimeFigLog}
-		\caption{For a field of $B = 1$ T, the experimental error is plotted against steering time. On  the right axis is the average time spent at the initialisation level during the experiment.}
+		\includegraphics[width=0.8\textwidth]{WaitTimeFigLog}
+		\caption{For a field of $B = 1.4$ T (top) and $B = 1.0$ T (bottom), the experimental error is plotted against steering time. On  the right axis is the average time spent at the initialisation level during the experiment.}
 		\label{fig::wait_time}
 	\end{figure}
 	
@@ -18,7 +19,13 @@
 
 \subsection{Initialisation Level Tuning}
 	The initialisation level of the pulse sequence was tuned to find the best position for a high fidelity experiment. It was discovered, however, that with initialisation there was a broad (approximately 400 mV) flat-band in which high fidelity results were obtained. This indicates another benefit in performing electron initialisation, which is insensitivity to tuning. This is a very useful property for a quantum computer, as reproducibility of measurements is crucial in determining the result of a computation.
+%	
+	\begin{figure}[htbp!]
+		\flushleft
+		\includegraphics[width=\textwidth]{readLevelScan_1p4T}
+		\includegraphics[width=\textwidth]{readLevelScan_1p0T}
+		\caption{For a field of $B = 1.4$ T (top) and $B = 1.0$ T (bottom), the tail of a read level scan is plotted.}
+	\end{figure}
 	
-	\todo[inline]{include graphic}
 	Another novel application of this measurement is that we can infer the donor temperature from the width of the flat-band. The flat-band itself is a measure of the tail reading from the Zeeman splitting of the electron donor, assuming finite temperature.
 
