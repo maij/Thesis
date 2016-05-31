@@ -1,5 +1,3 @@
-\todo[inline]{results}
-
 \subsection{Nuclear Spin Mapping Fidelity}
 \todo[inline]{Discuss all results related to nuclear spin mapping}
 
@@ -16,12 +14,20 @@
 
 \subsection{Nuclear and Electron Rabi Oscillations}
 	\todo[inline]{Discuss results pertaining to a high fidelity readout from a nuclear/electron rabi}
-
-	\begin{figure}[htbp!]
+	Figure \ref{fig::nuclear_rabi} show a demonstration of the improvement that can be achieved using this initialisation scheme.
+	
+	The generic nuclear Rabi oscillation was performed by loading an electron onto the donor, followed my mapping the state onto the nucleus. This electron is ideally spin-down for this step. After the nucleus is prepared, we stimulate it with a \gls{rf} pulse of duration $\tau_{RF}$, which is swept as part of the experiment. After the \gls{rf} exposure, we then map the nucleus state back onto an electron using another \gls{mw} pulse, followed by a readout of the electron state. We perform 20 repeated measures of the nuclear state via the electron in this manner.
+	
+	As we vary $\tau_{RF}$, we observe that the expected value of the nuclear-spin readout, via the electron readout, follows a sinusoid with a frequency known as the Rabi frequency. Arbitrary rotations are a key part of a quantum system, and naturally improving the initialisation fidelity can allow for finer rotations.
+	
+	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.8\textwidth]{nRabiFig}
-		\caption{A nuclear rabi oscillation with and without electron intialisation.}
+		\caption{A nuclear Rabi oscillation with and without electron intialisation.}
+		\label{fig::nuclear_rabi}
 	\end{figure}
+	
+	If we have poor initialisation, this will affect the fidelity of our readout and would reduce the height of the peaks, as shown by the maximum of the fitted sinewave reaching only 92.4\% without intialisation, compared to 99.4\% with intialisation.
 
 \subsection{Initialisation Level Tuning}
 	The initialisation level of the pulse sequence was tuned to find the best position for a high fidelity experiment. It was discovered, however, that with initialisation there was a broad (approximately 400 mV) flat-band in which high fidelity results were obtained. This indicates another benefit in performing electron initialisation, which is insensitivity to tuning. This is a very useful property for a quantum computer, as reproducibility of measurements is crucial in determining the result of a computation.
