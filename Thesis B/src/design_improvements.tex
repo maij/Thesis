@@ -1,2 +1,7 @@
 \todo[inline]{talk about how much better an integrated FPGA feedback loop would be.}
+To improve further on initialisation, this software-defined feedback loop should be shifted into an integrated solution, such as a purpose-built solution with a microcontroller or \gls{fpga}. While an \gls{fpga} would be easy to apply to the problem of detecting blips and measuring time, there is a complexity in integrating an \gls{fpga} based solution with \gls{daq}. 
+
+Data acquisition has been solely performed by a \gls{pcie} connected digitizer card, where data is dumped directly to memory and then saved to a hard-disk. If an \gls{fpga} were to be used in this manner, it would either need to be introduce a separate \gls{daq} system, where data processed in the \gls{fpga} is collected separately from what is stored on hard-disk, or the introduced \gls{daq} would need to also store its data for analysis.
+
+
 \todo[inline]{do a haar wavelet transform}
