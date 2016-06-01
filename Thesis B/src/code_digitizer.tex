@@ -1,0 +1,63 @@
+%% Process buffer; checking for threshold
+switch exp_phase
+    case 'init'
+        inEmpty = any(buff_data(samplesPerRecord+1:2*samplesPerRecord) < emptyLevel);
+        if (inEmpty)
+           emptied = 1; 
+        elseif (~start_wait && (emptied || buffersCompleted > 10))
+            % Once we have been to empty, and now we're back again start counting buffers
+           start_wait = 1;
+        end
+        
+        is_peak = any(buff_data(1:samplesPerRecord) > readout_threshold);
+        % This will increment buff_count when false, and reduce to 0 when true
+        buff_count = buff_count + (~is_peak & start_wait) - is_peak*buff_count;
+
+        % Found enough buffers with no current blip
+        if (buff_count >= buff_target)
+            exp_phase = 'readout';
+        end
+        % Waited long enough, just plunge
+        if buffersCompleted >= max_init_buffs
+            fprintf('Warning: Reached maximum number of buffers during initialization\n');
+            exp_phase = 'readout';
+        end
+        % If we're about to change to plunge, then trigger the PB
+        if strcmp(exp_phase,'readout')
+            buff_count = 0;
+            if calllib('spinapi64','pb_start')<0; disp(['PB Error: ',calllib('spinapi64','pb_get_error')]); end
+            plunged = true; 
+        end
+    case 'readout'
+         % Look for rising/falling edges on channel C to detect when to perform readout
+        
+         channelA = buff_data(1:samplesPerRecord);
+         channelC = buff_data(samplesPerRecord+1:samplesPerRecord*2);
+         
+         readoutPhase = channelC < trigLevel;
+         isReadoutPhase = any(readoutPhase);
+         
+		 % Convert output_data to a cell array for each of the n nuclear reads
+         if isReadoutPhase
+            % Append current buffer to output data for this readout
+            output_data{readoutsCompleted+1} = [output_data{readoutsCompleted + 1} channelA(readoutPhase)];
+         end
+         
+         if isReadoutPhase && plunged
+            % Falling edge of channel C, coming out of plunge
+            plunged = false;
+         elseif ~plunged && any(~readoutPhase)
+            % Rising edge of channel C, going into plunge
+            readoutsCompleted = readoutsCompleted+1;
+            plunged = true;
+         end
+         
+         % Once we reach required number of electron spin readouts, finish up OR if we reach a set maximum number of buffers
+         buff_count = buff_count + 1;
+         if readoutsCompleted >= totRecords || buff_count >= max_readout_buffs
+             captureDone = true;
+         end
+    otherwise
+        fprintf('Error: Undefined experiment phase : %s', exp_phase)
+        captureDone = true;
+end %switch

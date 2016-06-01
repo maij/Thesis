@@ -24,6 +24,7 @@
 %\usepackage{natbib}            %for bibliography stuff
 \usepackage{graphicx}          %for images
 \usepackage{epstopdf} 			%To import unsw emblem and stuff
+\usepackage{listings}
 \usepackage[acronym, nomain]{glossaries}
 
 \makeglossaries
@@ -66,7 +67,7 @@
 
 \graphicspath{{./img/}}
 
-\setcounter{tocdepth}{2}% remove subsubsections from table of contents
+%\setcounter{tocdepth}{2}% remove subsubsections from table of contents
    
 %This package must go last, or it won't work
 %With this package, you can click on cross references, URLs and page numbers, and you'll be taken there.
@@ -138,5 +139,7 @@
 	\pagebreak
 	\section{Supplementary Information}
 	\input{./src/supplementary_info}
+	\section{MATLAB Software Highlight}
+	\lstinputlisting[breaklines=true, language=MATLAB]{./src/code_digitizer}
 \end{appendices}
 \end{document}
