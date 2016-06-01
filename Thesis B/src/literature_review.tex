@@ -54,9 +54,9 @@
 	
 	%\todo[inline]{Talk about spin dependent tunnelling}
 	
-	Recalling the Zeeman splitting energy (Section \ref{zeeman}) that is created through the application of an external magnetic field, if we can then shift the average energy level of an electron, we can allow the higher energy state to be transmitted through the coulomb blockade, while the lower energy state will not be transmitted \todo[inline]{This is misleading, coulomb blockade is due to the presence/absence of an electron on the gate in our setup.}. This is known as spin-dependent tunneling, and in silicon, the higher energy state is spin up. This is depicted in Figure \ref{fig::set_loading}, where diagram b shows the Fermi level in green, and the red and blue lines are the energy levels of a spin-up and spin-down electron, respectively. 
+	Recalling the Zeeman splitting energy (Section \ref{zeeman}) that is created through the application of an external magnetic field, if we can then shift the average energy level of an electron, we can allow the higher energy state to be transmitted through the coulomb blockade, while the lower energy state will not be transmitted \todo[inline]{This is misleading, coulomb blockade is due to the presence/absence of an electron on the gate in our setup.}. This is known as spin-dependent tunneling, and in silicon, the higher energy state is spin up. This is depicted in Figure \ref{fig::set_loading}, where diagram (b) shows the Fermi level in green, and the red and blue lines are the energy levels of a spin-up and spin-down electron, respectively. 
 	
-	Furthermore, what we see when the coulomb blockade is lifted is a defined current through the \gls{set} from drain to source. This current is due to the sudden polarization of the phosphorus donor in silicon, as an electron tunnels off of the donor, into a reservoir. This positive voltage can shift the island voltage to allow for a larger \gls{set} current to flow, referring to Figure \ref{fig::coulomb_peaks} which shows the SET current as a function of gate charge, until an electron rejoins the phosphorus donor. This larger current is used to indicate the electron spin state, as ideally only a spin-up electron will tunnel off of the donor.
+	Furthermore, what we see when the coulomb blockade is lifted is a defined current through the \gls{set} from drain to source. This current is due to the sudden polarization of the phosphorus donor in silicon, as an electron tunnels off of the donor, into a reservoir. This positive voltage can shift the island voltage to allow for a larger \gls{set} current to flow, referring to Figure \ref{fig::coulomb_peaks} which shows the \gls{set} current as a function of gate charge, until an electron rejoins the phosphorus donor. This larger current is used to indicate the electron spin state, as ideally only a spin-up electron will tunnel off of the donor.
 	
 	\begin{figure}[htbp!]
 		\centering
@@ -84,40 +84,63 @@
 		
 		We can map an electron state to the nucleus by first initialising the electron to a known state, in our case spin down, then performing the desired operations, followed by a mapping operation, such as a CNOT or SWAP gate.
 		\todo[inline]{Explain more about mapping}
+	\subsubsection{Load and Read Errors}
+		\label{sec::load_error}
+		When the plunger is at the readout position, ideally a spin up electron would be able to tunnel off, and a spin down electron will be able to tunnel back on. However, due to the non-zero ambient temperature, we find that the Fermi distribution becomes bent, and there are allowable energy states below the Fermi level, and there are occupied states above the Fermi level. These are depicted in Figure \ref{fig::errors}, where the read error $(\alpha)$ indicates that we would read a blip in current incorrectly as a spin-up electron leaving the donor. Similarly, the load error $(\beta)$ is when an electron is allowed to tunnel onto the donor from the reservoir, and it is this error which this thesis is aimed at addressing. To understand how to minimise this error, we must understand the concept of electron spin steering.
+		
+		\begin{figure}[htbp!]
+			\centering
+			\includegraphics[height=0.3\textheight]{readout_errors}
+			\caption[Load and red errors in the \gls{set} readout position]{Load and read errors that occur when the \gls{set} is in the readout position.\cite{electron_spin_silicon}}
+			\label{fig::errors}
+		\end{figure}
 		
 	\subsubsection{Quantum Steering of an Electron Spin}
 	
-	When the plunger is at the readout position, ideally a spin up electron would be able to tunnel off, and a spin down electron will be able to tunnel back on. However, due to the non-zero ambient temperature, we find that the Fermi distribution becomes bent, and there are allowable energy states below the Fermi level, and there are occupied states above the Fermi level. These are depicted in Figure \ref{fig::errors}, where the read error $(\alpha)$ indicates that we would read a blip in current incorrectly as a spin-up electron being present on the donor. Similarly, the load error $(\beta)$ is when an electron is allowed to tunnel onto the donor from the reservoir, and it is this error which I am trying to minimise. To understand how to minimise this error, we must understand the concept of electron spin steering.
+		Once the island has been shifted to the readout position, an electron does not simply tunnel off immediately. There is an average tunnel time associated with the characteristics of the tunnel junction, namely the tunnel resistance and the junction capacitance. The probability of an electron tunnelling through a tunnel junction exponentially decays over time, meaning it is more likely for an electron to leave sooner, rather than later. \\
+		
+		\todo[inline]{Fix this!!}
+		Suppose the average tunnel time $(\tau)$ of an electron is 1 ms, and suppose we had an electron with an unknown spin loaded onto the donor, and we observe the state for a time much shorter than $\tau$, say 1 $\mu$s. If no tunnel event occurs, this is not indicative that the electron will not tunnel in the future, and so we have only gained a small amount of certainty of the state of the electron. In reality, we cannot know an electron spin state is down with complete certainty unless we were to wait for an infinite amount of time, but by waiting longer periods of time, we gradually gain more certainty that the electron is spin-down. If a tunnel event occurs, we know for that instance the electron was spin-up. However, if no tunnel event occurs for a time T; the likelihood that the electron is spin down increases proportional to $1-\exp\left(-\frac{T}{\tau}\right)$. \todo[inline]{how to express this truly as proportional... it's basically equivalent} This process is known as weak measurement, as we gradually gain more information about the system, which is different from a strong, or projective, measurement which gives an exact value at that point in time. Figure \ref{fig::spin_readout_decay} expresses this concept pictorially, after an electron of arbitrary spin joins the donor, the current readout drops, though the probability of the electron being spin up is still 50\% due to the load error shown in figure \ref{fig::errors}, over time this decays to 0\%. 
+		
+		With this information, there are 3 possibilities in initializing a spin-qubit, which are shown in Figure \ref{fig::init_possibilities}. The first plot shows the trivial case of no tunnel event occurring for a long time, indicating the loaded spin is spin-down. The middle plot shows an adequate amount of time between the plunge time and the last current blip, which presents the case for improving spin initialization. The bottom plot shows the worst case scenario, where the donor was plunged with no electron. This would result in a completely randomised spin, yielding unusable results, or worse yet, no spin at all to perform operations on. 
+		
+		\begin{figure}[htbp!]
+			\centering
+			\includegraphics[width=\textwidth]{spin_readout_decay}
+			\caption{Electronic Spin Steering}
+			\label{fig::spin_readout_decay}
+		\end{figure}
+		
+		\begin{figure}[htbp!]
+			\centering
+			\includegraphics[width=\textwidth]{init_possibilities}
+			\caption[Possible initialisation outcomes]{Possible intialization outcomes: Spin-down initialization is favourable, thus plots become decreasingly desirable from top to bottom.}
+			\label{fig::init_possibilities}
+		\end{figure}
+		
+		Figures \ref{fig::spin_steering} and \ref{fig::spin_steering_log} show the exponential decay function. Using this function, we can determine an adequate amount of time to wait to achieve a 99.9\% initialisation fidelity is $7 \tau$. For reference, $5 \tau$ and $3 \tau$ will yield an initialisation fidelity of 99.7\% and 97.5\% respectively.
+		
+		\begin{figure}[htbp!]
+			\centering
+			\includegraphics[width=\textwidth]{steering}
+			\caption{Exponential decay of spin-up probability of an arbitrary electron after joining donor}
+			\label{fig::spin_steering}
+		\end{figure}
+		
+		
+		\begin{figure}[htbp!]
+			\centering
+			\includegraphics[width=\textwidth]{steering_log}
+			\caption{Close up of Figure \ref{fig::spin_steering}, semilog plot to show P versus multiples of $\tau$}
+			\label{fig::spin_steering_log}
+		\end{figure}
+
+\subsubsection{Electron Spin Initialisation}
+\label{sec::spin_init}
+	\todo[inline]{Cite Rachpon's thesis, discuss here}
+	Previous research \cite{rachpon_thesis} has quantified an improvement in qubit control when initialisation fidelities are increased. Figure \ref{fig::rach_steering} depicts results that were gathered using post-selection on a repeated sequence shown in sub-plot (a). The sequence was to move to the initialisation level for 20 ms, and then plunged for 1 ms to cease steering, and finally it is moved to the readout level to observe the state of the electron spin. This was repeated 40,000 times to obtain statistics. To convey steering, results were binned based on how long it had been, at the point of plunge, since the last drop in current, or ionisation of the donor. These results are shown in sub-plot (b).
 	
-	\begin{figure}[htbp!]
-		\centering
-		\includegraphics[height=0.3\textheight]{readout_errors}
-		\caption[Load and red errors in the \gls{set} readout position]{Load and read errors that occur when the \gls{set} is in the readout position.\cite{electron_spin_silicon}}
-		\label{fig::errors}
-	\end{figure}
-	
-	Once the island has been shifted to the readout position, an electron does not simply tunnel off immediately. There is an average tunnel time associated with the characteristics of the tunnel junction, namely the tunnel resistance and the junction capacitance. The probability of an electron tunnelling through a tunnel junction exponentially decays over time, meaning it is more likely for an electron to leave sooner, rather than later. \\
-	
-	\todo[inline]{Fix this!!}
-	Suppose the average tunnel time $(\tau)$ of an electron is 1 ms, and suppose we had an electron with an unknown spin loaded onto the donor, and we observe the state for a time much shorter than $\tau$, say 1 $\mu$s. If no tunnel event occurs, this is not indicative that the electron would not tunnel in the future, and so we have only gained a small amount of certainty of the state of the electron. In reality, we cannot know an electron spin state with complete certainty unless we were to wait for an infinite amount of time, but by waiting longer periods of time, we gradually gain more information about the state. If a tunnel event occurs, we know for that instance the electron was spin up. However, if no tunnel event occurs for a time T; the likelihood that the electron is spin down increases proportional to $1-\exp\left(-\frac{T}{\tau}\right)$. \todo[inline]{how to express this truly as proportional... it's basically equivalent} This process is known as weak measurement, as we gradually gain more information about the system, which is different from a strong, or projective, measurement which gives an exact value at that point in time. Figure \ref{fig::spin_readout_decay} expresses this concept pictorially, after an arbitrarily spin-aligned electron joins the donor, the current readout drops, though the probability of the electron being spin up is still 50\% due to the load error shown in figure \ref{fig::errors}, over time this decays to 0\%. 
-	
-	With this information, there are 3 possibilities in initializing a spin-qubit, which are shown in Figure \ref{fig::init_possibilities}. The first plot shows the trivial case of no tunnel event occurring for a long time, indicating the loaded spin is spin-down. The middle plot shows an adequate amount of time between the plunge time and the last current blip, which presents the case for improving spin initialization. The bottom plot shows the worst case scenario, where the donor was plunged with no electron. This would result in a completely randomised spin, yielding unusable results. 
-	
-	\begin{figure}[htbp!]
-		\centering
-		\includegraphics[width=\textwidth]{spin_readout_decay}
-		\caption{Electronic Spin Steering}
-		\label{fig::spin_readout_decay}
-	\end{figure}
-	
-	\begin{figure}[htbp!]
-		\centering
-		\includegraphics[width=\textwidth]{init_possibilities}
-		\caption[Possible initialisation outcomes]{Possible intialization outcomes: Spin-down initialization is favourable, thus plots become decreasingly desirable from top to bottom.}
-		\label{fig::init_possibilities}
-	\end{figure}
-	
-	Figures \ref{fig::spin_steering} and \ref{fig::spin_steering_log} show the exponential decay function. Using this function, we can determine an adequate amount of time to wait to achieve a 99.9\% initialisation fidelity is $7 \tau$. For reference, $5 \tau$ and $3 \tau$ will yield an initialisation fidelity of 99.7\% and 97.5\% respectively.
+	The results showed that steering does increase based on the time spent steering, until a floor is reached, which is seen in the model applied to both sub-plots (b) and (c). The error floor was 4\% and 0.7\%, respectively, which indicates the best achievable fidelity for this particular configuration was 99.3\%.
 	
 	\begin{figure}[htbp!]
 		\centering
@@ -130,37 +153,7 @@
 		\label{fig::rach_steering}
 	\end{figure}
 	
-	
-	\begin{figure}[htbp!]
-		\centering
-		\includegraphics[width=\textwidth]{steering_log}
-		\caption{Close up of Figure \ref{fig::spin_steering}, semilog plot to show P versus multiples of $\tau$}
-		\label{fig::spin_steering_log}
-	\end{figure}
-
-\subsubsection{Electron Spin Initialisation}
-\label{sec::spin_init}
-\todo[inline]{Cite Rachpon's thesis, discuss here}
-Previous research \cite{rachpon_thesis} has quantified an improvement in qubit control when initialisation fidelities are increased. Figure \ref{fig::rach_steering} depicts results that were gathered using post-selection on a repeated sequence shown in sub-plot (a). The sequence was to move to the initialisation level for 20 ms, and then plunged for 1 ms to cease steering, and finally it is moved to the readout level to observe the state of the electron spin. This was repeated 40,000 times to obtain statistics. 
-
-The results showed that steering does increase based on the time spent steering, until a floor is reached, which is shown in the model applied to both sub-plots (b) and (c). The error floor was 4\% and 0.7\%, respectively, which indicates the best achievable fidelity for this particular configuration was 99.3\%.
-
-\begin{figure}[htbp!]
-	\centering
-	\includegraphics[width=\textwidth]{rach_steering}
-	\caption{Initialisation fidelity with varying steering times, obtained via post-selection.
-		(a) data points were binned based on the time $t$ from the time of plunge. 
-		(b) direct readout is performed from the electron after returning from plunge.
-		(c) readout is performed after mapping the electron spin to the nucleus, and then performing several subsequent electron readouts, mapped from the nucleus spin.
-		\cite{rachpon_thesis}}
-	\label{fig::rach_steering}
-\end{figure}
-
-Further work was undertaken which improved fidelities by fine-tuning the electrochemical potentials, to ensure that the vast majority of tunnel events will be observed, and not hidden by the finite amplifier bandwidth of the experiment. Under this tuning, repeating the same task of binning readouts based on the amount of time spent steering before a plunge.
-
-\todo[inline]{Introduce Rachpon's thesis, its contributions, and the breadth of knowledge known so far}
-\todo[inline]{Engage in the initialisation section, and discuss the effects of improving this fidelity on the rest of the experiment, in particular, take note of the ability to also perform the nuclear spin readout as a method of minimizing readout error. Combining these two things together, as well as gate fidelities, we have an overall high fidelity system.	I may want to describe/quantify the overall system fidelity, as a product (?) of the other fidelities.}
-
+	Further work was undertaken which improved fidelities by fine-tuning the electrochemical potentials, to ensure that the vast majority of tunnel events will be observed, and not hidden by the finite amplifier bandwidth of the experiment. Under this tuning, repeating the same task of binning readouts based on the amount of time spent steering before a plunge yielded 'triple-triple' results, where ensures that each of the three fidelities, $\mathcal{F}_I, \mathcal{F}_C, \mathcal{F}_R$ were all greater than 99.9\% as the total fidelity $\mathcal{F}$ was measured to be greater than 99.9\%, only limited by the accuracy of measurement. $\mathcal{F}_I, \mathcal{F}_C, \mathcal{F}_R$ are the component fidelities of the total fidelity, $\mathcal{F} = \mathcal{F}_I \mathcal{F}_C \mathcal{F}_R$, where $\mathcal{F}_I, \mathcal{F}_C, \mathcal{F}_R$ are the initialisation, control and readout fidelities respectively.
 
 \subsubsection{Digital Feedback in Quantum Devices}
 
