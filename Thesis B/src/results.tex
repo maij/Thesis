@@ -1,17 +1,20 @@
 \label{sec::results}
-\subsection{Nuclear Spin Mapping Fidelity}
+\subsection{Quantum Steering Efficacy}
 \todo[inline]{Discuss all results related to nuclear spin mapping}
 
-	As discussed in \hyperref[sec::nuc_spin_map]{section \ref{sec::nuc_spin_map}}, nuclear spin mapping was used to improve the readout fidelity of our experiment. However, the improvement in fidelity was conditional upon the initial state of the electron at the time of the mapping. To perform correct mapping, a spin-down electron is required. \todo{something needs to be added or reworded here to relate steering to init} Figure \ref{fig::wait_time} shows the total experimental error as a function of steering time. As steering time increases, we are more confident that the state of the electron was spin-down at the time of mapping, which is reflected in our decrease in error. The average time spent in the initialisation period is plotted on the right-axis. This would exceed the steering time in the average case, as a blip in current would require postponement of the donor plunge.
+	As discussed in \hyperref[sec::nuc_spin_map]{section \ref{sec::nuc_spin_map}}, nuclear spin mapping was used to improve the readout fidelity of our experiment. However, the improvement in fidelity was conditional upon the initial state of the electron at the time of the mapping. To perform correct mapping, a spin-down electron is required. To measure the fidelity of the nuclear mapping, and implicitly the quantum steering efficacy, the state of the nucleus was measured for many steering times, and repeated to minimise the limits of accuracy in the measurement. Figure \ref{fig::wait_time} shows the total experimental error as a function of steering time. As steering time increases, we are more confident that the state of the electron was spin-down at the time of mapping, which is reflected in our decrease in error. The average time spent in the initialisation period is plotted on the right-axis. This would exceed the steering time in the average case, as a blip in current would require postponement of the donor plunge.
+	
 	\begin{figure}[htbp!]
 		\centering
-		\includegraphics[width=0.8\textwidth]{WaitTimeFigLog}
-		\includegraphics[width=0.8\textwidth]{WaitTimeFigLog}
+		\includegraphics[width=0.8\textwidth]{WaitTimeFigLog_1p4T}
+		\includegraphics[width=0.8\textwidth]{WaitTimeFigLog_1p0T}
 		\caption{For a field of $B = 1.4$ T (top) and $B = 1.0$ T (bottom), the experimental error is plotted against steering time. On  the right axis is the average time spent at the initialisation level during the experiment.}
 		\label{fig::wait_time}
 	\end{figure}
 	
-	There are 2 separate data sets plotted, for $B = 1.4$ T and $B = 1$ T, respectively. These two datasets show the relationship between the required steering time for a good initialisation and the apparent tunnelling time of the donor electron. The required steering time to achieve 99\% fidelity is much longer for $B = 1$ T, however it was observed that the average tunnel time had not increased by such a margin from $B = 1.4$ T. This could be explained if we accept that the probability of a spin-down electron tunnelling off during the initialisation phase is high (also known as a dark-count), which is equivalent to a read-error. Whilst this is a possible explanation, it's not clear if this is accurate, and more examination of the data is required.
+	There are 2 separate data sets plotted, for $B = 1.4$ T and $B = 1$ T, respectively. These two datasets show the relationship between the required steering time for a good initialisation and the apparent tunnelling time of the donor electron. As expected, with a larger steering time the fidelity of the experiment approaches 100\% as an exponential decay, determined by the characteristic tunnel time. There are two sets of points plotted, raw error data given by analysing all flips and PS error, or post-selection error, when we ignore readouts that were initialised poorly, and take the average from the remaining data points. Post-selecting improves the experimental fidelity, and it has been shown that with post-selection the fidelity can approach 99.9\% fidelity \todo{somehow give citation to Stef, no paper on this though}, though in these plots, the maximum is constrained by the limits of accuracy for the measurement, which was 0.002\% (500 readouts), and hence the maximum observed fidelity is 99.8\%. \todo{put max fidelities on plots}
+	
+	The required steering time to achieve 99\% fidelity is much longer for $B = 1$ T, however it was observed that the average tunnel time had not increased by such a margin from $B = 1.4$ T. This could be explained if we accept that the probability of a spin-down electron tunnelling off during the initialisation phase is high (also known as a dark-count), which is physically the same as a read-error. Whilst this is a possible explanation, it's not clear if this is accurate, and more examination of the data is required.
 
 \subsection{Nuclear and Electron Rabi Oscillations}
 	\todo[inline]{Discuss results pertaining to a high fidelity readout from a nuclear/electron rabi}
@@ -42,3 +45,12 @@
 	
 	Another novel application of this measurement is that we can infer the donor temperature from the width of the flat-band. The flat-band itself is a measure of the tail reading from the Zeeman splitting of the electron donor, assuming finite temperature.
 
+\subsection{Improper Initialisation due to Trigger Latency}
+	\todo[inline]{Put a plot here of MATLAB latency, and describe the cause and effect of it.}
+	
+	\begin{figure}[htbp!]
+		\centering
+		\includegraphics[width=\textwidth]{MATLAB_latency}
+		\caption{Improper initialisation occurs due to a latency in the trigger sent by MATLAB.}
+		\label{fig::latency}
+	\end{figure}
