@@ -33,7 +33,6 @@ switch exp_phase
         
          channelA = buff_data(1:samplesPerRecord);
          channelC = buff_data(samplesPerRecord+1:samplesPerRecord*2);
-         
          readoutPhase = channelC < trigLevel;
          isReadoutPhase = any(readoutPhase);
          
