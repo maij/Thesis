@@ -60,9 +60,10 @@
 \MakeOuterQuote{"}
 \usepackage{rotating}
 \usepackage{subcaption}
+\usepackage{pdfpages}
 
-\usepackage[colorinlistoftodos]{todonotes}%to do notes
-%\usepackage[disable]{todonotes} %Uncomment for the final version
+%\usepackage[colorinlistoftodos]{todonotes}%to do notes
+\usepackage[disable]{todonotes} %Uncomment for the final version
 
 
 \graphicspath{{./img/}}
@@ -88,7 +89,9 @@
 \thispagestyle{empty}
 \include{./src/cover}
 \pagebreak
-\input{./src/summary}
+
+\includepdf[pages={1,2}]{./src/summary}
+\pagebreak
 \restoregeometry
 \pagenumbering{arabic}
 
