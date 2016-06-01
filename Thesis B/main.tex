@@ -88,6 +88,7 @@
 \thispagestyle{empty}
 \include{./src/cover}
 \pagebreak
+\input{./src/summary}
 \restoregeometry
 \pagenumbering{arabic}
 
@@ -142,6 +143,9 @@
 	\section{Supplementary Information}
 	\input{./src/supplementary_info}
 	\section{MATLAB Software Highlight}
-	\lstinputlisting[breaklines=true, language=MATLAB]{./src/code_digitizer}
+	\lstinputlisting[breaklines=true, language=MATLAB,
+					 basicstyle=\footnotesize\ttfamily,
+					 numbers=left					
+					]{./src/code_digitizer}
 \end{appendices}
 \end{document}
