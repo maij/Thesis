@@ -56,6 +56,7 @@
 
 \subsection{Improper Initialisation due to Trigger Latency}
 	\todo[inline]{Put a plot here of MATLAB latency, and describe the cause and effect of it.}
+	Due to the nature of a software solution, there is an inherent latency between making a decision in software, and triggering hardware to react. The effect of this is shown in Figure \ref{fig::latency}, where the donor became ionised before the plunge, and so there was no electron to be initialised and the result must be discarded. There are two possibilities that occur due to this latency, the first being plunging when the donor is ionised and therefore potentially not being able to perform a spin-mapping. The second is if the donor ionises and deionises in this latency window, meaning there is an electron to map to the nucleus but it is in an indeterminate state.
 	
 	\begin{figure}[htbp!]
 		\centering
@@ -71,5 +72,6 @@
 		\label{fig::latency_errors}
 	\end{figure}
 	
+	This has been the sole drive for further post-selection in the data, and for low steering times it has a significant effect however with longer steering times, the probability of an electron tunnelling off the donor diminishes, meaning there is a sharp decrease in latency errors. This confirms the reliability of a pre-selecting digital feedback loop, and holds room for improvement in mitigating the effect due to latency. The primary result from this analysis is that despite the potential for initialisation errors due to software to hardware latency, it is in fact a rare occurrence. This indicates pre-selection is far superior to post-selecting data that does not fit the required steering time, in terms of data economy. \todo{find out how much post-selection is done}
 
 	
