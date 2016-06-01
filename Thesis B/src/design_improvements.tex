@@ -11,6 +11,6 @@ Ultimately, the desired solution should be integrated in a manner fit for use by
 
 The proposed solution is to utilise a \gls{pxie} cabinet with multiple slots to integrate the varied signals and sources we use, including an \gls{awg} and a \gls{daq}. For the problem at hand, there exist combination \gls{fpga} and \gls{daq} cards that allow for pre-processing data and controlling a single digital output, or in more advanced devices, controlling an \gls{awg} via the \gls{fpga}. This solution will be sufficient for performing threshold analysis on a single channel, however it does not make the most of the advantage an \gls{fpga} has over a \gls{mcu}. It has been shown \todo{get Ken's report!!} that a \gls{dwt} can detect blips that occur below the threshold level, due to the finite bandwidth of the device and sampling rate of the \gls{daq}.
 
-A Haar \gls{dwt} was used in post-processing data to yield a high-fidelity readout. If this is combined with the initialisation scheme defined in this report, total experiment fidelity is expected to increase much further.
+A Haar \gls{dwt} was used in post-processing data to yield a high-fidelity readout. If this is combined with the initialisation scheme defined in this report, total experiment fidelity is expected to increase much further. \todo{be quantitative!}
 
-\todo[inline]{do a haar wavelet transform}
+\todo[inline]{talk about the viability of such a solution, bring up previous work}
