@@ -30,20 +30,32 @@ The problem I am to solve in this thesis is to incorporate digital feedback with
 \subsection{Process}
 
 	\subsubsection{Gate Stimulus, NMR and ESR}
-	\todo[inline]{discuss gate tuning, explain here or earlier how the fermi level/donor level is shifted by applying a voltage}
-	\todo[inline]{Add pulse sequence explanation here}
-	To allow for precise control and measurement of the steering time applied to the electron donor, an electrostatic environment needed to be defined, along with radio and microwave stimulus. The \gls{set} donor is coupled capacitively to a number of gates, and so the tunnelling of an electron can be controlled simply by shifting the degenerate electron energy level about the Fermi level of the island. Once a magnetic field is applied, the degenerate electron energy levels split between the higher energy spin-up state, and the lower energy spin-down state. When tuned to the correct gate voltages, a spin-down electron's energy will be below the Fermi level, while a spin-up electron's energy will be above the Fermi energy, allowing tunnelling to unoccupied states. This is the ideal voltage to set our initialisation and readout levels. In Figure \ref{fig::sequence}, the \gls{set} control gate is being changed throughout the experiment, from empty to initialisation, then followed by a sequence of plunges and readouts. The plunge voltage will take the donor electron below the Fermi level, and so neither spin-state will be able to tunnel, as there are no available states in the reservoir, assuming the device is near absolute zero.
+		To allow for precise control and measurement of the steering time applied to the electron donor, an electrostatic environment needed to be defined, along with radio and microwave stimulus. The \gls{set} donor is coupled capacitively to a number of gates, and so the tunnelling of an electron can be controlled simply by shifting the degenerate electron energy level about the Fermi level of the island. Once a magnetic field is applied, the degenerate electron energy levels split between the higher energy spin-up state, and the lower energy spin-down state. When tuned to the correct gate voltages, a spin-down electron's energy will be below the Fermi level, while a spin-up electron's energy will be above the Fermi energy, allowing tunnelling to unoccupied states. This is the ideal voltage to set our initialisation and readout levels. In Figure \ref{fig::sequence}, the \gls{set} control gate is being changed throughout the experiment, from empty to initialisation, then followed by a sequence of plunges and readouts. The plunge voltage will take the donor electron below the Fermi level, and so neither spin-state will be able to tunnel, as there are no available states in the reservoir, assuming the device is near absolute zero.
+		
+		
+		\begin{figure}[htbp!]
+			\centering
+			\includegraphics[width=\textwidth]{sequenceFigure}
+			\caption{The control sequence, describing both gate levels as well as \gls{rf} \gls{mw} stimulus, applied for this experiment.}
+			\label{fig::sequence}
+		\end{figure}
+		
+		During the initial plunge, a \gls{rf} pulse and a \gls{mw} pulse will be applied, to map the state of the donor electron to the nucleus and then to map the state of the nucleus to the electron, respectively. Mapping from nucleus to electron place during this stage is a short-hand method of beginning the readout phase, without first returning to the readout level.
+		
+		These \gls{rf} and \gls{mw} pulses are applying \gls{nmr} and \gls{esr}, conditional upon the state of the electron, for \gls{nmr}, and conditional on the state of the nucleus, for \gls{esr}. This is best explained by Figure \ref{fig::spin_levels}, where the state transitions are shown to require distinct driving frequencies, $\nu_{e1}, \nu_{e2}, \nu_{n1} \textrm{ and } \nu_{n2}$. Since the electron spin is expected to be spin-down when the \gls{rf} pulse is performed, the driving frequency to perform \gls{nmr} will be $\nu_{n2}$. Using this method we will perform a $\pi$-pulse, which will flip the nucleus state from spin-up to spin-down, or vice versa given that is in initially in one of these states. For each consecutive readout, the nucleus is expected to flip, as ideally each time a spin-down electron is loaded followed by a successful $\pi$-pulse.
+		
+		\begin{figure}[htbp]
+			\centering
+			\includegraphics[height=0.40\textheight]{spin_levels}
+			\caption{Energy levels when a magnetic field $B_0 > 0$ is applied to the donor. The transitions $\nu_{e1}$ and $\nu_{e2}$ are effected by \gls{esr}, while $\nu_{n1}$ and $\nu_{n2}$ are effected by \gls{nmr}} 
+			\label{fig::spin_levels}
+		\end{figure}
+		
+		Once the nuclear state has been prepared, the sequence of electron state mapping and readout commences, which performs \gls{esr} conditional upon the state of the nucleus. The driving frequency for this transition is $\nu_{e2}$, so the readout phases should show tunnel events if the nucleus is spin-up.
 	
-	During the initial plunge, a \gls{rf} pulse and a \gls{mw} pulse will be applied, to map the state of the donor electron to the nucleus and then to map the state of the nucleus to the electron, respectively. Mapping from nucleus to electron place during this stage is a short-hand method of beginning the readout phase, without first returning to the readout level.
-	
-	These \gls{rf} and \gls{mw} pulses are applying \gls{nmr} and \gls{esr}
-	
-	
-	
-	\begin{figure}[htbp!]
-		\centering
-		\includegraphics[width=\textwidth]{sequenceFigure}
-		\caption{The control sequence, describing both gate levels as well as \gls{rf} \gls{mw} stimulus, applied for this experiment.}
-		\label{fig::sequence}
-	\end{figure}
+		This measurement is repeated 20 times, to determine the state of the nucleus accurately, and then the experiment is repeated a set number of times (for the data presented in this report, the nuclear readout was performed between 500 and 2000 times). 
+		
+	\subsubsection{Magnetic Field Variation}
+		Once the characteristics of quantum steering are established at a set magnetic field, it will be worthwhile studying the impact of this approach at lower magnetic fields. Lower magnetic fields incur more initialisation errors due to a smaller Zeeman splitting than with a higher magnetic field. If there is little affect on the efficacy of quantum steering for initialisation, and also on the readout fidelity, then a spin device can become far more practicable, as the level of \gls{esr} control is much simpler at lower driving frequencies, and often there are simply more numerous devices available at lower frequencies. The primary fields of consideration are 1.4 T, 1.0 T, and 0.7 T, which correspond to \gls{esr} frequencies  $\nu_{e1}, \nu_{e2} \approx$ 39 GHz, 28 GHz and 20 GHz, respectively.
+		
 	
