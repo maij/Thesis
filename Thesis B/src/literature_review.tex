@@ -90,7 +90,14 @@
 		
 	\subsubsection{Load and Read Errors}
 		\label{sec::load_error}
-		When the plunger is at the readout position, ideally a spin up electron would be able to tunnel off, and a spin down electron will be able to tunnel back on. However, due to the non-zero ambient temperature, we find that the Fermi distribution becomes bent, and there are allowable energy states below the Fermi level, and there are occupied states above the Fermi level. These are depicted in Figure \ref{fig::errors}, where the read error $(\alpha)$ indicates that we would read a blip in current incorrectly as a spin-up electron leaving the donor. Similarly, the load error $(\beta)$ is when an electron is allowed to tunnel onto the donor from the reservoir, and it is this error which this thesis is aimed at addressing. To understand how to minimise this error, we must understand the concept of electron spin steering.
+		When the plunger is at the readout position, ideally a spin up electron would be able to tunnel off, and a spin down electron will be able to tunnel back on. However, due to the non-zero ambient temperature, we find that the Fermi distribution becomes bent, and there are allowable energy states below the Fermi level, and there are occupied states above the Fermi level. These are depicted in Figure \ref{fig::errors}, where the read error $(\alpha)$ indicates that we would read a blip in current incorrectly as a spin-up electron leaving the donor. Similarly, the load error $(\beta)$ is when an electron is allowed to tunnel onto the donor from the reservoir, and it is this error which this thesis is aimed at addressing. 
+		
+%		\todo{move problem statement elsewhere}
+		\paragraph{Problem Statement}
+		\label{sec::problem_statement}
+%		The problem with this current approach is the cost of running these experiments if at the point of the plunge there was no electron on the donor. Any data with an incorrect initialization must be discarded, so as not to disturb the results. To take this one step further, to require 99.9\% spin-down initialization fidelity would mean ignoring over 90\% of all recorded data. This kind of waste can be circumvented by a feedback loop that can decide when the initialization has been performed correctly, and thus continue the experiment.
+%		
+		The problem this thesis is framed to solve is to incorporate digital feedback with current and future spin-qubit devices to alleviate the time cost of gathering and refining data. This is to be accomplished by minimising the impact of load errors through electron spin steering.
 		
 		\begin{figure}[htbp!]
 			\centering
