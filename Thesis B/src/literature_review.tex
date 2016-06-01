@@ -85,15 +85,6 @@
 		We can map an electron state to the nucleus by first initialising the electron to a known state, in our case spin down, then performing the desired operations, followed by a mapping operation, such as a CNOT or SWAP gate.
 		\todo[inline]{Explain more about mapping}
 		
-	
-	\subsubsection{Electron Spin Initialisation}
-	\label{sec::spin_init}
-	\todo[inline]{Cite Rachpon's thesis, discuss here}
-	Previous research \cite{rachpon_thesis} has quantified an improvement in qubit control when initialisation fidelities are increased.
-	
-	\todo[inline]{Introduce Rachpon's thesis, its contributions, and the breadth of knowledge known so far}
-	\todo[inline]{Engage in the initialisation section, and discuss the effects of improving this fidelity on the rest of the experiment, in particular, take note of the ability to also perform the nuclear spin readout as a method of minimizing readout error. Combining these two things together, as well as gate fidelities, we have an overall high fidelity system.	I may want to describe/quantify the overall system fidelity, as a product (?) of the other fidelities.}
-	
 	\subsubsection{Quantum Steering of an Electron Spin}
 	
 	When the plunger is at the readout position, ideally a spin up electron would be able to tunnel off, and a spin down electron will be able to tunnel back on. However, due to the non-zero ambient temperature, we find that the Fermi distribution becomes bent, and there are allowable energy states below the Fermi level, and there are occupied states above the Fermi level. These are depicted in Figure \ref{fig::errors}, where the read error $(\alpha)$ indicates that we would read a blip in current incorrectly as a spin-up electron being present on the donor. Similarly, the load error $(\beta)$ is when an electron is allowed to tunnel onto the donor from the reservoir, and it is this error which I am trying to minimise. To understand how to minimise this error, we must understand the concept of electron spin steering.
@@ -142,6 +133,29 @@
 		\caption{Close up of Figure \ref{fig::spin_steering}, semilog plot to show P versus multiples of $\tau$}
 		\label{fig::spin_steering_log}
 	\end{figure}
+
+\subsubsection{Electron Spin Initialisation}
+\label{sec::spin_init}
+\todo[inline]{Cite Rachpon's thesis, discuss here}
+Previous research \cite{rachpon_thesis} has quantified an improvement in qubit control when initialisation fidelities are increased. Figure \ref{fig::rach_steering} depicts results that were gathered using post-selection on a repeated sequence shown in sub-plot (a). The sequence was to move to the initialisation level for 20 ms, and then plunged for 1 ms to cease steering, and finally it is moved to the readout level to observe the state of the electron spin. This was repeated 40,000 times to obtain statistics. 
+
+The results showed that steering does increase based on the time spent steering, until a floor is reached, which is shown in the model applied to both sub-plots (b) and (c). The error floor was 4\% and 0.7\%, respectively, which indicates the best achievable fidelity for this particular configuration was 99.3\%.
+
+\begin{figure}[htbp!]
+	\centering
+	\includegraphics[width=\textwidth]{rach_steering}
+	\caption{Initialisation fidelity with varying steering times, obtained via post-selection.
+		(a) data points were binned based on the time $t$ from the time of plunge. 
+		(b) direct readout is performed from the electron after returning from plunge.
+		(c) readout is performed after mapping the electron spin to the nucleus, and then performing several subsequent electron readouts, mapped from the nucleus spin.
+		\cite{rachpon_thesis}}
+	\label{fig::rach_steering}
+\end{figure}
+
+Further work was undertaken which improved fidelities by fine-tuning the electrochemical potentials, to ensure that the vast majority of tunnel events will be observed, and not hidden by the finite amplifier bandwidth of the experiment. Under this tuning, repeating the same task of binning readouts based on the amount of time spent steering before a plunge.
+
+\todo[inline]{Introduce Rachpon's thesis, its contributions, and the breadth of knowledge known so far}
+\todo[inline]{Engage in the initialisation section, and discuss the effects of improving this fidelity on the rest of the experiment, in particular, take note of the ability to also perform the nuclear spin readout as a method of minimizing readout error. Combining these two things together, as well as gate fidelities, we have an overall high fidelity system.	I may want to describe/quantify the overall system fidelity, as a product (?) of the other fidelities.}
 
 
 \subsubsection{Digital Feedback in Quantum Devices}
