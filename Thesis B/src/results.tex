@@ -10,7 +10,7 @@
 		\vspace{-1cm}
 		\includegraphics[width=\textwidth]{WaitTimeFigLog_1p4T}
 		\includegraphics[width=\textwidth]{WaitTimeFigLog_1p0T}
-		\caption{For a field of $B = 1.4$ T (top) and $B = 1.0$ T (bottom), the experimental error is plotted against steering time. On  the right axis is the average time spent at the initialisation level during the experiment.}
+		\caption[Experimental fidelity with varying steering times.]{For a field of $B = 1.4$ T (top) and $B = 1.0$ T (bottom), the experimental error is plotted against steering time. On  the right axis is the average time spent at the initialisation level during the experiment.}
 		\label{fig::wait_time}
 	\end{figure}
 		
@@ -38,13 +38,20 @@
 	If we have poor initialisation, this will affect the fidelity of our readout and would reduce the height of the peaks, as shown by the maximum of the fitted sinewave reaching only 92.4\% without intialisation, compared to 99.4\% with intialisation.
 
 \subsection{Initialisation Level Tuning}
-	The initialisation level of the pulse sequence was tuned to find the best position for a high fidelity experiment. It was discovered, however, that with initialisation there was a broad (approximately 400 mV) flat-band in which high fidelity results were obtained. This indicates another benefit in performing electron initialisation, which is insensitivity to tuning. This is a very useful property for a quantum computer, as reproducibility of measurements is crucial in determining the result of a computation.
-%	
+	The initialisation level of the pulse sequence was tuned to find the best position for a high fidelity experiment. It was discovered, however, that with initialisation there was a broad  flat-band (approximately 400 mV) in which high fidelity results were obtained. This indicates another benefit in performing electron initialisation, which is insensitivity to tuning. This is a very useful property for a quantum computer, as reproducibility of measurements is crucial in determining the result of a computation.
+	\todo{explain levels in terms of the fermi level and zeeman splitting}
+	Figure \ref{fig::initLevel} shows the error rate as a function of initialisation level. As the initialisation level changes, the donor potential will also change about the Fermi level of the reservoir, leading to changes in load and read errors, as explained in Section \ref{sec::load_error}. To reiterate, if the potential of both a spin-up and spin-down electron is such that both have available energy states in the reservoir, they can both tunnel out. If the Zeeman splitting of the donors is much larger than the thermal energy of the system, then we would expect a fairly large region in which to tune the initialisation level, while maintaining spin-dependent tunnelling. 
+%	Typically, $ k_B T \ll h \nu_{e2}$, where $k_B, T$ are Boltzmann's constant and the device temperature, respectively.
+	By sweeping the initialisation level we observe a cut-off region, greater than approximately 0 V, where the Experimental fidelity drops completely. On the negative end of the scale, there appears to be an exponential drop in fidelity, as read errors begin to occur more frequently, as a negative bias shifts the donor potential above the Fermi level.
+	
 	\begin{figure}[htbp!]
 		\flushleft
-		\includegraphics[width=\textwidth,height=0.45\textheight]{readLevelScan_1p4T}
-		\includegraphics[width=\textwidth,height=0.45\textheight]{readLevelScan_1p0T}
-		\caption{For a field of $B = 1.4$ T (top) and $B = 1.0$ T (bottom), the tail of a read level scan is plotted.}
+		\includegraphics[width=\textwidth,height=0.4\textheight]{readLevelScan_1p4T}
+		\includegraphics[width=\textwidth,height=0.4\textheight]{readLevelScan_1p0T}
+		\caption[Read level scan for two magnetic biases]{For a field of $B = 1.4$ T (top) and $B = 1.0$ T (bottom), the tail of a read level scan is plotted, where red indicates a high current through the \gls{set} while blue indicates low current. The values are average over many runs. 
+		Above a certain threshold, the donor will remain ionised and current will continue to flow throughout the load-read-empty cycle. Below a certain threshold the opposite will occur, where any electron on the donor will remain on the donor with high probability, regardless of its spin-state.
+		Spin-dependent tunnelling occurs in the mid-region which appears blue-green. 
+		}
 		\label{fig::readLevel}
 	\end{figure}
 	
@@ -71,7 +78,7 @@
 	\begin{figure}[htb!]
 		\centering
 		\includegraphics[width=\textwidth]{LatencyErrorFig}
-		\caption{}
+		\caption{Probability of incorrect initialisation with varying steering times.}
 		\label{fig::latency_errors}
 	\end{figure}
 	

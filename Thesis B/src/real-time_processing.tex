@@ -22,6 +22,7 @@ Figure \ref{fig::set_layout} shows the physical device that will be similar to o
 	\label{fig::set_layout}
 \end{figure}
 
+\todo{move problem statement elsewhere}
 \subsection{Problem Statement}
 The problem with this current approach is the cost of running these experiments if at the point of the plunge there was no electron on the donor. Any data with an incorrect initialization must be discarded, so as not to disturb the results. To take this one step further, to require 99.9\% spin-down initialization fidelity would mean ignoring over 90\% of all recorded data. This kind of waste can be circumvented by a feedback loop that can decide when the initialization has been performed correctly, and thus continue the experiment.
 
@@ -39,7 +40,7 @@ The problem I am to solve in this thesis is to incorporate digital feedback with
 		\begin{figure}[htbp!]
 			\centering
 			\includegraphics[width=\textwidth]{sequenceFigure}
-			\caption{The control sequence, describing both gate levels as well as \gls{rf} \gls{mw} stimulus, applied for this experiment.}
+			\caption{The control sequence, describing both gate levels as well as \gls{rf} and \gls{mw} stimulus, applied for this experiment.}
 			\label{fig::sequence}
 		\end{figure}
 		
@@ -50,7 +51,7 @@ The problem I am to solve in this thesis is to incorporate digital feedback with
 		\begin{figure}[htbp]
 			\centering
 			\includegraphics[height=0.40\textheight]{spin_levels}
-			\caption{Energy levels when a magnetic field $B_0 > 0$ is applied to the donor. The transitions $\nu_{e1}$ and $\nu_{e2}$ are effected by \gls{esr}, while $\nu_{n1}$ and $\nu_{n2}$ are effected by \gls{nmr}} 
+			\caption[Energy levels of a $^{31}$P and electron spin system under magnetic bias.]{Energy levels when a magnetic field $B_0 > 0$ is applied to the donor. The transitions $\nu_{e1}$ and $\nu_{e2}$ are effected by \gls{esr}, while $\nu_{n1}$ and $\nu_{n2}$ are effected by \gls{nmr}} 
 			\label{fig::spin_levels}
 		\end{figure}
 		
