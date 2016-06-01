@@ -67,23 +67,27 @@
 	
 \subsection{Quantum Control}
 	\subsubsection{Hyperfine Interaction}
-		In this thesis, we are considering a single $^{31}$P donor implanted near the \gls{set} island. This donor has a single unbound electron on which we can perform spin operations, this will be explored in the next section. The phosphorus donor nucleus is also a spin-half particle, and due to its proximity with the donor electron, there is a magnetic interaction which acts as an extra magnetic source which splits the energy levels.
-		\todo[inline]{Put a diagram here explaining the energy splitting}
+		In this thesis, we are considering a single $^{31}$P donor implanted near the \gls{set} island. This donor has a single unbound electron on which we can perform spin operations, this will be explored in the next section. The phosphorus donor nucleus is also a spin-half particle, and due to its proximity with the donor electron, there is a magnetic interaction which acts as an extra magnetic source which splits the energy levels. These energy levels are shown in Figure \ref{fig::spin_levels}.
+%		\todo[inline]{Put a diagram here explaining the energy splitting}
+		\begin{figure}[htbp]
+			\centering
+			\includegraphics[height=0.40\textheight]{spin_levels}
+			\caption[Energy levels of a $^{31}$P and electron spin system under magnetic bias.]{Energy levels when a magnetic field $B_0 > 0$ is applied to the donor. The transitions $\nu_{e1}$ and $\nu_{e2}$ are effected by \gls{esr}, while $\nu_{n1}$ and $\nu_{n2}$ are effected by \gls{nmr}.} 
+			\label{fig::spin_levels}
+		\end{figure}
 		
-		By modulating the gate voltages, we shift the electrostatic environment about the donor, and hence we change the coupling between the donor nucleus and electron. This in turn modifies the hyperfine interaction, and therefore changes the energy splitting. This change in coupling can be thought of as due to the distance between the electron and nucleus.
-		\todo[inline]{Improve this, talk about resonance shift}
+		By modulating the gate voltages, we shift the electrostatic environment around the donor, and hence we change the coupling between the donor nucleus and electron. This in turn modifies the hyperfine interaction, and therefore changes the energy splitting. This change in coupling can be thought of as due to the distance between the electron and nucleus.
+		The hyperfine interaction must therefore be kept stable during nuclear and electron spin control. By tuning the gate voltages and maintaining stability, we can search for the resonance frequency for both the nucleus and electron. 
+	\subsubsection{Nuclear and Electron Spin Control}
+		\label{sec::nuc_spin_map}
+		We can translate an energy difference into a frequency of an electromagnetic wave using the equality $E = h f$, which means we can effect a state transition by applying a \gls{mw} or \gls{rf} pulse.
 		
-		By tuning our gate voltages and keeping them steady, we can search for the resonance frequency for both our nucleus and electron. 
-	\subsubsection{Nuclear and Electron Spin Mapping}
-	\label{sec::nuc_spin_map}
-	\todo[inline]{Discuss NMR/ESR and the state evolution}
-	\todo[inline]{specifically explain NMR}
-		We can translate an energy difference into a frequency of an electromagnetic wave using $E = h f$, which means we can affect a state transition by applying a microwave or radio frequency pulse.
+		By mapping the electron spin state to the nucleus we can increase the coherence time of our measurements, as the nucleus is more immune to perturbations in the environment than an electron. Consider Figure \ref{fig::spin_levels}, presuming the initial state of the system is $\ket{\downarrow \Downarrow}$, by applying an \gls{rf} pulse with frequency $\nu_{n2}$ the following state transition will occur 
+		$$\ket{\downarrow \Downarrow} \overset{\textrm{NMR($\nu_{n2}$)}}{\longrightarrow }\ket{\downarrow \Uparrow}$$
+		over a period of time dictated by the power of the \gls{rf} pulse.
 		
-		By mapping the electron spin state to the nucleus we can increase the coherence time of our measurements, as the nucleus is more immune to perturbations in the environment than an electron. Consider Figure \todo[inline]{insert figure showing 4 energy states here}
+		We can map an electron state to the nucleus by first initialising the electron to a known state, in our case spin down, then performing the desired operations, followed by a mapping operation, such as a CNOT or SWAP gate. In the following thesis, mapping will be used to refer to a conditional operation applied to two qubits that will modify one of them, depending on the other. For example, if we wanted to control the nuclear spin, only when the electron is spin-up, we can use \gls{nmr} with a frequency of $\nu_{n1}$ to drive the nucleus to the opposite state. If we then observe the nuclear state, we can determine if the initial operation worked, and hence determine the original spin-state of the electron.
 		
-		We can map an electron state to the nucleus by first initialising the electron to a known state, in our case spin down, then performing the desired operations, followed by a mapping operation, such as a CNOT or SWAP gate.
-		\todo[inline]{Explain more about mapping}
 	\subsubsection{Load and Read Errors}
 		\label{sec::load_error}
 		When the plunger is at the readout position, ideally a spin up electron would be able to tunnel off, and a spin down electron will be able to tunnel back on. However, due to the non-zero ambient temperature, we find that the Fermi distribution becomes bent, and there are allowable energy states below the Fermi level, and there are occupied states above the Fermi level. These are depicted in Figure \ref{fig::errors}, where the read error $(\alpha)$ indicates that we would read a blip in current incorrectly as a spin-up electron leaving the donor. Similarly, the load error $(\beta)$ is when an electron is allowed to tunnel onto the donor from the reservoir, and it is this error which this thesis is aimed at addressing. To understand how to minimise this error, we must understand the concept of electron spin steering.
@@ -122,7 +126,7 @@
 		
 		\begin{figure}[htbp!]
 			\centering
-			\includegraphics[width=\textwidth]{steering}
+			\includegraphics[width=\textwidth,height=0.37\textheight]{steering}
 			\caption{Exponential decay of spin-up probability of an arbitrary electron after joining donor}
 			\label{fig::spin_steering}
 		\end{figure}
@@ -130,14 +134,13 @@
 		
 		\begin{figure}[htbp!]
 			\centering
-			\includegraphics[width=\textwidth]{steering_log}
+			\includegraphics[width=\textwidth,height=0.37\textheight]{steering_log}
 			\caption{Close up of Figure \ref{fig::spin_steering}, semilog plot to show P versus multiples of $\tau$}
 			\label{fig::spin_steering_log}
 		\end{figure}
 
 \subsubsection{Electron Spin Initialisation}
 \label{sec::spin_init}
-	\todo[inline]{Cite Rachpon's thesis, discuss here}
 	Previous research \cite{rachpon_thesis} has quantified an improvement in qubit control when initialisation fidelities are increased. Figure \ref{fig::rach_steering} depicts results that were gathered using post-selection on a repeated sequence shown in sub-plot (a). The sequence was to move to the initialisation level for 20 ms, and then plunged for 1 ms to cease steering, and finally it is moved to the readout level to observe the state of the electron spin. This was repeated 40,000 times to obtain statistics. To convey steering, results were binned based on how long it had been, at the point of plunge, since the last drop in current, or ionisation of the donor. These results are shown in sub-plot (b).
 	
 	The results showed that steering does increase based on the time spent steering, until a floor is reached, which is seen in the model applied to both sub-plots (b) and (c). The error floor was 4\% and 0.7\%, respectively, which indicates the best achievable fidelity for this particular configuration was 99.3\%.
@@ -159,4 +162,4 @@
 
 %\todo[inline]{Talk about the place of digital feedback in quantum systems}
 %\todo[inline]{find more digital feedback stuff}
-Digital feedback has recently been explored in the development of a quantum computer. For example, it has been used to reduce error in resonance estimation \cite{bonato2015optimized} and increase coherence time of a single qubit through adjusting control parameters \cite{shulman2014suppressing}. As such, it is likely to be a key factor in the future of quantum computers, especially once they are realised as black-box systems.
+	Digital feedback has recently been explored in the development of a quantum computer. For example, it has been used to reduce error in resonance estimation \cite{bonato2015optimized} and increase coherence time of a single qubit through adjusting control parameters \cite{shulman2014suppressing}. Any complex system requires some level of self-correction and feedback, and the most natural implementation would be to bridge a classical and quantum system with digital components. This thesis will explore a specific application of digital feedback, namely a software-based solution, to the problem of qubit initialisation. In later sections, a hardware-based solution will be described and laid out for future implementations.

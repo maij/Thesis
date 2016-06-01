@@ -48,13 +48,6 @@ The problem I am to solve in this thesis is to incorporate digital feedback with
 		
 		These \gls{rf} and \gls{mw} pulses are applying \gls{nmr} and \gls{esr}, conditional upon the state of the electron, for \gls{nmr}, and conditional on the state of the nucleus, for \gls{esr}. This is best explained by Figure \ref{fig::spin_levels}, where the state transitions are shown to require distinct driving frequencies, $\nu_{e1}, \nu_{e2}, \nu_{n1} \textrm{ and } \nu_{n2}$. Since the electron spin is expected to be spin-down when the \gls{rf} pulse is performed, the driving frequency to perform \gls{nmr} will be $\nu_{n2}$. Using this method we will perform a $\pi$-pulse, which will flip the nucleus state from spin-up to spin-down, or vice versa given that is in initially in one of these states. For each consecutive readout, the nucleus is expected to flip, as ideally each time a spin-down electron is loaded followed by a successful $\pi$-pulse.
 		
-		\begin{figure}[htbp]
-			\centering
-			\includegraphics[height=0.40\textheight]{spin_levels}
-			\caption[Energy levels of a $^{31}$P and electron spin system under magnetic bias.]{Energy levels when a magnetic field $B_0 > 0$ is applied to the donor. The transitions $\nu_{e1}$ and $\nu_{e2}$ are effected by \gls{esr}, while $\nu_{n1}$ and $\nu_{n2}$ are effected by \gls{nmr}} 
-			\label{fig::spin_levels}
-		\end{figure}
-		
 		Once the nuclear state has been prepared, the sequence of electron state mapping and readout commences, which performs \gls{esr} conditional upon the state of the nucleus. The driving frequency for this transition is $\nu_{e2}$, so the readout phases should show tunnel events if the nucleus is spin-up.
 	
 		This measurement is repeated 20 times, to determine the state of the nucleus accurately, and then the experiment is repeated a set number of times (for the data presented in this report, the nuclear readout was performed between 500 and 2000 times). 
